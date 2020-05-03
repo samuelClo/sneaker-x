@@ -15,7 +15,6 @@ mix.webpackConfig({
               options: {
                  data: `          
                  @import "@/assets/scss/fundations/_colors.scss";
-                 @import "@/assets/scss/fundations/_fonts.scss";
                  @import "@/assets/scss/fundations/_typographies.scss";
                  @import "@/assets/scss/_mixins.scss";
                  `

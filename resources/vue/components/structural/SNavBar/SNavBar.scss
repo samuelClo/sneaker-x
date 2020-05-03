@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 15px 0 15px;
+}
+
+#links {
+    display: flex;
+    @include font_menu_item;
+}
+
+#logo {
+    img {
+        max-height: 50px;
+    }
+}
+
+#useful_links {
+    display: flex;
+    align-items: center;
+}
+.usefil_links_wrapper {
+    padding: 5px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1500px) {
+    .usefil_links_wrapper {
+        margin-left: 40px;
+    }
+}

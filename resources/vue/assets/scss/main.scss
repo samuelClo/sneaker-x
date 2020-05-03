@@ -1,3 +1,23 @@
 body {
-    background-color: rgb(216, 216, 252);
+    box-sizing: content-box;
+    background-color: #485b64;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    list-style-type: none;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: unset;
+}
+
+.useful_links_logos {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
 }

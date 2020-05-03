@@ -1,0 +1,19 @@
+@mixin font_H1 {
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    color: $color_text_default;
+}
+
+@mixin font_H2 {
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    color: $color_text_default;
+}
+
+@mixin font_menu_item{
+    font-family: "Source Sans Pro";
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $color_text_default;
+}
