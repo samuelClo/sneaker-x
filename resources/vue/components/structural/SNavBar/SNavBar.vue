@@ -8,17 +8,17 @@
             />
         </ULink>
         <ul id="links">
-            <li>
+            <li class="link">
                 <ULink href="home">
                     Accueil
                 </ULink>
             </li>
-            <li>
+            <li class="link">
                 <ULink href="catalog">
                     Catalogue
                 </ULink>
             </li>
-            <li>
+            <li class="link">
                 <ULink href="news">
                     Actualité
                 </ULink>
@@ -33,10 +33,11 @@
             </div>
             <div class="usefil_links_wrapper">
                 <ULink href="basket">
+                    <!-- global style class -->
                     <img
                         src="@/assets/pictures/logos/logo-basket.svg"
                         alt="Access to the basket page"
-                        class="useful_links_logos"
+                        class="useful_links_logos" 
                     />
                 </ULink>
             </div>

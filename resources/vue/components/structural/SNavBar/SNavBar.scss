@@ -1,29 +1,43 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 15px 0 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5px 15px;
+    border-bottom: 1px solid $color_light_grey;
 }
 
 #links {
-    display: flex;
-    @include font_menu_item;
+    @include flex-center;
+    @include font_H2;
+
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.link {
+    margin-left: 20px;
+
+    &:first-child {
+        margin-left: unset;
+    }
 }
 
 #logo {
     img {
-        max-height: 50px;
+        max-height: 80px;
+        display: block;
     }
 }
 
 #useful_links {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 .usefil_links_wrapper {
-    padding: 5px;
-    margin-left: 8px;
+    margin-left: 17px;
     cursor: pointer;
 }
+
 
 @media screen and (min-width: 1500px) {
     .usefil_links_wrapper {

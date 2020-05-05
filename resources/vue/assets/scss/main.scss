@@ -1,8 +1,11 @@
-body {
+* {
     box-sizing: content-box;
-    background-color: #485b64;
     padding: 0;
     margin: 0;
+}
+
+body {
+    background-color: $color_whithe;
 }
 
 ul {
