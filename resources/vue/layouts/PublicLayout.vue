@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <header>
-            <SNavBar />
+            <SNavBar />  
         </header>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import { SNavBar } from "@/components/structural";
+import { SNavBar, SCarouselProduct } from "@/components/structural";
 
 export default {
     components: {

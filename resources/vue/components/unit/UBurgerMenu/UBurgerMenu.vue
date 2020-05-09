@@ -1,4 +1,5 @@
 <template>
+<!-- global style class -->
     <img
         class="useful_links_logos"
         src="@/assets/pictures/logos/logo-burger-menu.svg"

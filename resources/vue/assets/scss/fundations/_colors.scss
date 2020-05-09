@@ -1,6 +1,3 @@
-$color_primary_default: "";
-$color_primary_hover: "";
-
 $color_error_default: "";
 $color_warning_default: "";
 $color_succes_default: "";
@@ -10,4 +7,8 @@ $color_light_grey: #e8e8e8;
 
 $color_background: "";
 
+$color_text_activ: #41b883;
 $color_text_default: #323333;
+
+$color_primary_default: darken($color_text_activ, 10);
+$color_primary_hover: "";

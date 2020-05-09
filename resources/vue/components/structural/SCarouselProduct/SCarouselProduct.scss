@@ -1,0 +1,23 @@
+#wrapper {
+    width: 50vw;
+    // height: 20vh;
+    margin: 0 auto;
+}
+
+.slide{
+    display: flex;
+    flex-direction: column;
+}
+
+.picture {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+}
+
+.text {
+    padding: 8px 0;
+    background-color: $color_primary_default;
+    color: choose-contrast-color($color_primary_default);
+    text-align: center;
+}
