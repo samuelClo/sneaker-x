@@ -1,10 +1,19 @@
 <template>
-    <div id="wrapper">
-        <carousel :per-page="1" :mouse-drag="false">
+    <div>
+        <carousel
+            id="wrapper"
+            :per-page="1"
+            :autoplay="true"
+            :autoplayHoverPause="true"
+            :navigationEnabled="true"
+            :navigationClickTargetSize="20"
+            :mouse-drag="true"
+            :loop="true"
+        >
             <slide class="slide" v-for="(product, i) in products" :key="i">
                 <img
                     class="picture"
-                    src="@/assets/pictures/img/adidas-ultraboost-dna-leather-white-eh1210-pic1-1100x771_lbmvjm.jpg"
+                    :src="`/storage/img/${product.image}`"
                 />
                 <span class="text">{{ product.name }}</span>
             </slide>

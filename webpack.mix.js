@@ -13,13 +13,13 @@ mix.webpackConfig({
               test: /\.scss$/,
               loader: "sass-loader",
               options: {
-                 data: `          
+                 data: `
                  @import "@/assets/scss/fundations/_colors.scss";
                  @import "@/assets/scss/fundations/_typographies.scss";
                  @import "@/assets/scss/_mixins.scss";
                  `
               }
-           }
+           },
         ]
      }
 });

@@ -1,9 +1,11 @@
 <template>
-    <div class="container">
+    <div>
         <header>
-            <SNavBar />  
+            <SNavBar />
         </header>
-        <router-view></router-view>
+        <main id="container">
+            <router-view></router-view>
+        </main>
     </div>
 </template>
 
@@ -13,6 +15,12 @@ import { SNavBar, SCarouselProduct } from "@/components/structural";
 export default {
     components: {
         SNavBar
-    }
+    },
 };
 </script>
+
+<style lang="scss">
+#container {
+    padding: 15px;
+}
+</style>

@@ -1,18 +1,30 @@
 <template>
     <main>
-        <h1>Nouveaux arrivage</h1>
         <SCarouselProduct id="carousel" :products="arrivage" />
+        <div id="productGrid">
+            <UProductCard
+                v-for="product in dixProduitsAleatoire"
+                :key="product.id"
+                :name="product.name"
+                :picture="product.image"
+                :price="product.price"
+                :id="product.id"
+            />
+        </div>
     </main>
 </template>
 
 <script>
-import { arrivage } from "@/fakedata/fake.data";
+import { arrivage, dixProduitsAleatoire } from "@/fakedata/fake.data";
+
 import { SCarouselProduct } from "@/components/structural";
+import { UProductCard } from "@/components/unit";
 
 export default {
     data() {
         return {
-            arrivage
+            arrivage,
+            dixProduitsAleatoire
         };
     },
     mounted() {
@@ -20,7 +32,8 @@ export default {
     },
     computed: {},
     components: {
-        SCarouselProduct
+        SCarouselProduct,
+        UProductCard
     }
 };
 </script>
