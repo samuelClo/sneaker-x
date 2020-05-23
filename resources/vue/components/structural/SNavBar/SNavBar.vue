@@ -32,7 +32,7 @@
                 <USearch />
             </div>
             <div class="usefil_links_wrapper">
-                <ULink href="basket">
+                <ULink href="">
                     <!-- global style class -->
                     <img
                         src="@/assets/pictures/logos/logo-basket.svg"

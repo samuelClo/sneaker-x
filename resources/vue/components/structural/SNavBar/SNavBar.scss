@@ -7,7 +7,7 @@ nav {
 
 #links {
     @include flex-center;
-    @include font_H2;
+    @include font_NAV;
 
     text-transform: uppercase;
     font-weight: 700;

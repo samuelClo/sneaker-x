@@ -1,19 +1,34 @@
 <template>
-    <button @click="handleClick" id="wrapper">
+    <button @click="handleClick" id="wrapper" :class="this.style">
         {{ content }}
     </button>
 </template>
 
 <script>
 export default {
-    props: {
-        content: {
-            required: true
-        }
+    data() {
+        return {
+            style: {
+                is_small: this.size === "small",
+                is_large: this.size === "large"
+            }
+        };
     },
     methods: {
         handleClick() {
             this.$emit("onClick");
+        }
+    },
+    props: {
+        size: {
+            required: false,
+            default: "small",
+            validator: function(value) {
+                return ["large", "small"].indexOf(value) !== -1;
+            }
+        },
+        content: {
+            required: true
         }
     }
 };

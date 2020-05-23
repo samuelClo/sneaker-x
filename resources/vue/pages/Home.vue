@@ -27,9 +27,6 @@ export default {
             dixProduitsAleatoire
         };
     },
-    mounted() {
-        console.log(arrivage);
-    },
     computed: {},
     components: {
         SCarouselProduct,

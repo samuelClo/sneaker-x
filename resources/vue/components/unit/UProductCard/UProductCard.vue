@@ -1,5 +1,5 @@
 <template>
-    <ULink href="#" id="wrapper">
+    <ULink href="article" :params="{ articleId: id }" id="wrapper">
         <div id="card_shadow">
             <div id="card">
                 <div id="picture" v-bind:style="stylePicture"></div>

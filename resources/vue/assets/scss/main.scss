@@ -28,6 +28,10 @@ h1 {
     @include font_H1;
 }
 
+button {
+    border: unset;
+}
+
 .useful_links_logos {
     height: 30px;
     width: 30px;
