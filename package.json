@@ -8,7 +8,10 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --disable-host-check --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "createComp": "/bin/bash ./scripts/create-comp.sh"
+        "createComp": "/bin/bash ./scripts/create-comp.sh",
+        "start": "node server.js",
+        "postinstall": "npm run build",
+        "build": "yarn prod"
     },
     "devDependencies": {
         "axios": "^0.19",
@@ -21,6 +24,7 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "express": "^4.17.1",
         "vue": "^2.6.11",
         "vue-carousel": "^0.18.0",
         "vue-router": "^3.1.6"
