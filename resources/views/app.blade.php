@@ -15,3 +15,15 @@
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
+
+@if (env('APP_ENV') === 'local')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@else
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+@endif
+
+@if (env('APP_ENV') === 'local')
+    <script src="{{ asset('js/app.js') }}"></script>
+@else
+    <script src="{{ secure_asset('js/app.js') }}"></script>
+@endif
