@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128.31918mm"
+   height="170.23463mm"
+   viewBox="0 0 128.31919 170.23463"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="logo-burger-menu.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="174.86575"
+     inkscape:cy="330.29141"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g3840"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="1920"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-68.582052,-80.343357)">
+    <g
+       id="g3840"
+       transform="matrix(0.35277779,0,0,0.35277779,16.278169,72.81789)">
+      <path
+         id="path3820"
+         d="m 170.66797,64 h 320 C 502.46484,64 512,54.464844 512,42.667969 512,30.871094 502.46484,21.332031 490.66797,21.332031 h -320 c -11.79688,0 -21.33594,9.539063 -21.33594,21.335938 C 149.33203,54.464844 158.87109,64 170.66797,64 Z m 0,0"
+         inkscape:connector-curvature="0" />
+      <path
+         style="stroke-width:1"
+         id="path3820-3"
+         d="m 170.67034,283.93319 h 320 c 11.79687,0 21.33204,-9.53515 21.33204,-21.33203 0,-11.79687 -9.53517,-21.33594 -21.33204,-21.33594 h -320 c -11.79688,0 -21.33594,9.53907 -21.33594,21.33594 0,11.79688 9.53906,21.33203 21.33594,21.33203 z m 0,0"
+         inkscape:connector-curvature="0" />
+      <path
+         style="stroke-width:1"
+         id="path3822-6"
+         d="M 489.59892,461.21891 H 169.59891 c -11.79688,0 -21.33594,9.53515 -21.33594,21.33202 0,11.79689 9.53906,21.33595 21.33594,21.33595 h 320.00001 c 11.79687,0 21.33203,-9.53906 21.33203,-21.33595 0,-11.79687 -9.53516,-21.33202 -21.33203,-21.33202 z m 0,0"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

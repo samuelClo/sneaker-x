@@ -1,7 +1,7 @@
 /node_modules
-/public/hot
-/public/storage
-/storage/*.key
+#/public/hot
+#/public/storage
+#/storage/*.key
 /vendor
 /.idea
 .env
@@ -14,9 +14,9 @@ npm-debug.log
 yarn-error.log
 .editorconfig
 
-public/*
-!public/.htaccess
-!public/favicon.ico
-!public/index.php
-!public/robots.txt
-!public/web.config
+#public/*
+#!public/.htaccess
+#!public/favicon.ico
+#!public/index.php
+#!public/robots.txt
+#!public/web.config
