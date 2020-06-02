@@ -1,5 +1,5 @@
 <template>
-    <button @click="handleClick" id="wrapper" :class="this.style">
+    <button @click="handleClick" id="wrapper_btn" :class="this.style">
         {{ content }}
     </button>
 </template>

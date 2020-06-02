@@ -1,3 +1,14 @@
-.is_active {
-    border: 1px solid red;
+.is_active, :not(.is_active):hover{
+    background-color: $color_primary_default;
+    color: $color_whithe;
+    border: none!important;
+    padding: 5px 15px !important;
+    transition: background-color 200ms ease-out;
+}
+
+#wrapper {
+    padding: 4px 14px;
+    border: 1px solid $color_light_grey;
+    cursor: pointer;
+    margin: 7px;
 }

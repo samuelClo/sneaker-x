@@ -1,10 +1,14 @@
+
 @use '@/assets/fonts/index.scss';
 
 * {
     box-sizing: content-box;
     padding: 0;
     margin: 0;
-    outline: unset!important;
+}
+
+*:focus {
+    outline: none;
 }
 
 body {
@@ -26,6 +30,10 @@ a {
 
 h1 {
     @include font_H1;
+}
+
+button::-moz-focus-inner {
+    border: 0;
 }
 
 button {

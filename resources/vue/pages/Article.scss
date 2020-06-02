@@ -1,0 +1,47 @@
+$page_size: 1500px;
+
+#product_page {
+    max-width: $page_size;
+    margin: 0 auto;
+    display: flex;
+}
+#assets_wrapper {
+    padding: 10px 15px;
+    flex: 3;
+
+    h3 {
+        @include font_ARTICLE;
+        text-transform: uppercase;
+    }
+}
+
+#price {
+    @include font_BTN;
+    margin-bottom: 40px;
+}
+
+#select_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+    input {
+        width: 35px;
+        border: 1px solid $color_light_grey;
+        padding: 10px;
+        margin: 17px 0 0 7px;
+    }
+}
+
+button {
+    margin-top: 40px;
+    @include font_ARTICLE_SMALL;
+}
+
+@media screen and (max-width: $page_size) {
+    #wrapper {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+}

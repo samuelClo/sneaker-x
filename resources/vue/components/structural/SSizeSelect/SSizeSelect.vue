@@ -1,5 +1,5 @@
 <template>
-    <div id="wrapper">
+    <div id="wrapper_select">
         <USizeSelect
             v-for="size in sizes"
             :key="size"

@@ -1,21 +1,21 @@
 <template>
     <div>
         <carousel
-            id="wrapper"
+            id="carousel"
             :per-page="1"
             :autoplay="true"
             :autoplayHoverPause="true"
-            :navigationEnabled="true"
+            :navigationEnabled="navigationEnabled"
             :navigationClickTargetSize="20"
             :mouse-drag="true"
             :loop="true"
         >
-            <slide class="slide" v-for="(product, i) in products" :key="i">
+            <slide class="slide" v-for="(productPicture, i) in productsPicture" :key="i">
                 <img
                     class="picture"
-                    :src="`/storage/img/${product.image}`"
+                    :src="`/storage/img/${productPicture}`"
                 />
-                <span class="text">{{ product.name }}</span>
+                <span v-if="productsText && productsText[i]" class="text">{{ productsText[i] }}</span>
             </slide>
         </carousel>
     </div>
@@ -26,9 +26,18 @@ import { Carousel, Slide } from "vue-carousel";
 
 export default {
     props: {
-        products: {
+        productsPicture: {
             required: true,
             type: Array
+        },
+        productsText: {
+            required: false,
+            type: Array
+        },
+        navigationEnabled: {
+            required: false,
+            type: Boolean,
+            default: true,
         }
     },
     components: {

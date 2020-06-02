@@ -1,7 +1,11 @@
-#wrapper {
+#wrapper_btn {
     border-radius: 5px;
-    background-color: lightblue;
+    background-color: $color_primary_default;
+    color: $color_whithe;
+    text-align: center;
     display: inline;
+    cursor: pointer;
+    outline: unset;
 }
 
 .is-small {
@@ -11,6 +15,6 @@
 .is_large {
     @include font_BTN;
     
-    padding: 15px 0;
+    padding: 12px 0;
     width: 100%;
 }
