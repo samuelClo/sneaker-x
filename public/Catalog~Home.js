@@ -4,7 +4,7 @@
 /*!*********************************************!*\
   !*** ./resources/vue/fakedata/fake.data.js ***!
   \*********************************************/
-/*! exports provided: arrivage, dixProduitsAleatoire, allProduct, cinqNewsLast */
+/*! exports provided: arrivage, dixProduitsAleatoire, allProduct, cinqNewsLast, brands */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,6 +13,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dixProduitsAleatoire", function() { return dixProduitsAleatoire; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allProduct", function() { return allProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cinqNewsLast", function() { return cinqNewsLast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "brands", function() { return brands; });
+var brands = [{
+  "name": "Nike",
+  "image": "http://res.cloudinary.com/hrd7cpazc/image/upload/v1588235916/Sneakizy/Brands/x1yvrnshpnokmycsuzzw.png",
+  "banner": "bannierenike3_905_euivfi.jpg",
+  "id": "1"
+}, {
+  "name": "Jordan",
+  "image": "http://res.cloudinary.com/hrd7cpazc/image/upload/v1588235917/Sneakizy/Brands/jj6tnbknpmhbwcq8kxw1.png",
+  "banner": "e9002f76513055.5c6c28e4b628a_yanpa7.jpg",
+  "id": "2"
+}, {
+  "name": "Adidas",
+  "image": "http://res.cloudinary.com/hrd7cpazc/image/upload/v1588235918/Sneakizy/Brands/xor6iptghi9lojwrj7ny.png",
+  "banner": "unnamed_jghijr.jpg",
+  "id": "3"
+}, {
+  "name": "Asics",
+  "image": "http://res.cloudinary.com/hrd7cpazc/image/upload/v1588235918/Sneakizy/Brands/qsllzyuww58u3qn2gblt.png",
+  "banner": "téléchargement_kcg958.jpg",
+  "id": "4"
+}, {
+  "name": "Puma",
+  "image": "http://res.cloudinary.com/hrd7cpazc/image/upload/v1588235919/Sneakizy/Brands/pogajsqtzrhj8sgnz4cv.png",
+  "banner": "137-11-11-44-puma_banner_1200x1200_tashwq.jpg",
+  "id": "5"
+}];
 var arrivage = [{
   name: "Adidas UltraBoost DNA",
   brand: "Adidas",

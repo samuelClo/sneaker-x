@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/fakedata/fake.data */ "./resources/vue/fakedata/fake.data.js");
 /* harmony import */ var _components_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/unit */ "./resources/vue/components/unit/index.js");
+/* harmony import */ var _components_structural__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/structural */ "./resources/vue/components/structural/index.js");
 //
 //
 //
@@ -28,16 +29,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      allProduct: _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__["allProduct"]
+      allProduct: _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__["allProduct"],
+      brands: _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__["brands"]
     };
   },
+  methods: {
+    handleBrandClick: function handleBrandClick(brandId) {
+      console.log(brandId);
+    }
+  },
   components: {
-    UProductCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UProductCard"]
+    UProductCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UProductCard"],
+    SFilterProduct: _components_structural__WEBPACK_IMPORTED_MODULE_2__["SFilterProduct"]
   }
 });
 
@@ -55,7 +65,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "p[data-v-278920dd] {\n  color: red;\n}", ""]);
+exports.push([module.i, "#productGrid[data-v-278920dd] {\n  width: 80vw;\n  grid-gap: 30px;\n}", ""]);
 
 // exports
 
@@ -107,26 +117,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", [
-    _c("h1", [_vm._v("Tous les produits :")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "grid", attrs: { id: "productGrid" } },
-      _vm._l(_vm.allProduct, function(product) {
-        return _c("UProductCard", {
-          key: product.id,
-          attrs: {
-            name: product.name,
-            picture: product.image,
-            price: product.price,
-            id: product.id
-          }
-        })
+  return _c(
+    "main",
+    [
+      _c("h1", [_vm._v("TOUS LES PRODUITS")]),
+      _vm._v(" "),
+      _c("SFilterProduct", {
+        attrs: { brands: _vm.brands },
+        on: { onBrandClick: _vm.handleBrandClick }
       }),
-      1
-    )
-  ])
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "grid", attrs: { id: "productGrid" } },
+        _vm._l(_vm.allProduct, function(product) {
+          return _c("UProductCard", {
+            key: product.id,
+            attrs: {
+              name: product.name,
+              picture: product.image,
+              price: product.price,
+              id: product.id
+            }
+          })
+        }),
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

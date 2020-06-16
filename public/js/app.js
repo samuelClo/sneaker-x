@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Catalog~Home":"Catalog~Home","Catalog":"Catalog","vendors~Article~Home~PublicLayout":"vendors~Article~Home~PublicLayout","Article~Home~PublicLayout":"Article~Home~PublicLayout","Article":"Article","Home":"Home","PublicLayout":"PublicLayout"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Article":"Article","Catalog~Home":"Catalog~Home","Catalog":"Catalog","Home":"Home","PublicLayout":"PublicLayout"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -16551,7 +16551,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PublicLayout = function PublicLayout() {
-  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
+  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -16576,7 +16576,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
-  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
+  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
 };
 
 var About = function About() {
@@ -16592,7 +16592,7 @@ var News = function News() {
 };
 
 var Article = function Article() {
-  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
+  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
 };
 
 var NotFound = function NotFound() {

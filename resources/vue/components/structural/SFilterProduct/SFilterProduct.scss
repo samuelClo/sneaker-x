@@ -1,0 +1,44 @@
+#brandName {
+    border-radius: 4px;
+    box-shadow: $color_primary_default 0px 1px 3px, $color_primary_default 0px 1px 2px;
+    padding: 10px 20px;
+    position: relative;
+}
+
+#wrapper {
+    display: flex;
+    padding: 10px 10%;
+    user-select: none;
+}
+
+.selectWrapper {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    padding: 15px 15px;
+    border: 1px solid $color_primary_default;
+    left: 132px;
+    border-radius: 5px;
+    background-color: $color_whithe;
+}
+
+.active {
+    display: block;
+}
+
+#brandName {
+    cursor: pointer;
+}
+
+.item {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:last-child {
+        padding-bottom: 0;
+    }
+    img {
+        margin-right: 20px;
+    }
+}
