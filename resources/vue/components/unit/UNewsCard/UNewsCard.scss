@@ -1,0 +1,17 @@
+#card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid $color_light_grey;
+    padding: 16px;
+    min-height: 178px;
+}
+#title, #date, #summary {
+    padding-bottom: 16px;
+}
+
+#title {
+    font-weight: 600;
+    color: #0e1c14;
+}

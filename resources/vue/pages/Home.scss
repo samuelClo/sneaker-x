@@ -1,12 +1,30 @@
-#productGrid {
+#productGrid, #newsGrid {
     margin: 0 auto;
     width: 80vw;
     background-color: inherit;
     display: grid;
-    grid-gap: 30px;
     grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
     padding: 32px 32px 0;
     transition: margin-top 0.2s;
     position: relative;
     z-index: 1;
+}
+
+#productGrid {
+    width: 80vw;
+    grid-gap: 30px;
+}
+
+#newsGrid {
+    width: 60vw;
+    grid-gap: 15px;
+}
+
+@media screen and (max-width: 1024px) {
+    #productGrid {
+        width: 90vw;
+    }
+    #newsGrid {
+    width: 70vw;
+    }
 }

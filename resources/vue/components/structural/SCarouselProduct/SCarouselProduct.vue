@@ -43,6 +43,9 @@ export default {
     components: {
         Carousel,
         Slide
+    },
+    onMount() {
+        console.log(this.productsText, this.productsPicture)
     }
 };
 </script>

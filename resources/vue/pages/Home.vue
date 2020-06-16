@@ -11,14 +11,24 @@
                 :id="product.id"
             />
         </div>
+        <div id="newsGrid">
+            <UNewsCard
+                v-for="news in cinqNewsLast"
+                :key="news.id"
+                :title="news.title"
+                :date="news.date"
+                :summary="news.summary"
+                :id="news.id"
+            />
+        </div>
     </main>
 </template>
 
 <script>
-    import {arrivage, dixProduitsAleatoire} from "@/fakedata/fake.data";
+    import {arrivage, dixProduitsAleatoire, cinqNewsLast} from "@/fakedata/fake.data";
 
     import {SCarouselProduct} from "@/components/structural";
-    import {UProductCard} from "@/components/unit";
+    import {UProductCard, UNewsCard} from "@/components/unit";
 
     export default {
         data() {
@@ -26,7 +36,8 @@
                 arrivage,
                 arrivagePicture: [],
                 arrivageText: [],
-                dixProduitsAleatoire
+                dixProduitsAleatoire,
+                cinqNewsLast
             }
         },
         mounted() {
@@ -38,7 +49,8 @@
         computed: {},
         components: {
             SCarouselProduct,
-            UProductCard
+            UProductCard,
+            UNewsCard
         }
     };
 </script>

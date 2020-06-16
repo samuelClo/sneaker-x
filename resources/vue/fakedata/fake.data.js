@@ -25,7 +25,38 @@ const arrivage = [
         brand_id: 3
     }
 ];
-
+const cinqNewsLast = [
+    {
+        "title": "Air Jordan 1 Retro High OG « Light Smoke Grey »",
+        "summary": "Une nouvelle Air Jordan 1 Hi rappelle la collaboration avec le shop Union",
+        "date": "01/06/2000",
+        "id": 1,
+    },
+    {
+        "title": "Human Made x adidas Superstar 80’s",
+        "summary": "Trois adidas Superstar ont été conçues pour la suite du partenariat avec Human Made",
+        "date": "01/06/2000",
+        "id": 2,
+    },
+    {
+        "title": "Adidas Yeezy Boost 700 MNVN “Bone”",
+        "summary": "La dernière évolution de l’adidas Yeezy Boost 700 dans un coloris exclusif",
+        "date": "01/06/2000",
+        "id": 3,
+    },
+    {
+        "title": "Girls Are Awesome x adidas SS20",
+        "summary": "Les femmes sont à l’honneur avec cette nouvelle collection entre le label Girls Are Awesome et adidas.",
+        "date": "01/06/2000",
+        "id": 4,
+    },
+    {
+        "title": "Tyler, The Creator x Converse Gianno – Summer 2020",
+        "summary": "Le rappeur dévoile sa nouvelle collection footwear pour la belle saison",
+        "date": "01/06/2000",
+        "id": 5,
+    },
+]
 const dixProduitsAleatoire = [
     {
         id: 1,
@@ -373,4 +404,4 @@ const allProduct = [
     }
 ];
 
-export { arrivage, dixProduitsAleatoire, allProduct };
+export { arrivage, dixProduitsAleatoire, allProduct, cinqNewsLast };

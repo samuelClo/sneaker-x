@@ -1,9 +1,9 @@
 {
     "private": true,
-    "engines" : {
-        "node" : "14.1.0",
-        "yarn" : "1.22.4",
-        "npm" : "6.14.4"
+    "engines": {
+        "node": "14.1.0",
+        "yarn": "1.22.4",
+        "npm": "6.14.4"
     },
     "scripts": {
         "dev": "npm run development",
@@ -33,6 +33,7 @@
         "serve-static": "^1.14.1",
         "vue": "^2.6.11",
         "vue-carousel": "^0.18.0",
+        "vue-color": "^2.7.1",
         "vue-router": "^3.1.6"
     }
 }

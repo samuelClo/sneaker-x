@@ -35,7 +35,12 @@ $page_size: 1500px;
 
 button {
     margin-top: 40px;
+    @include font_ARTICLE;
+}
+
+p {
     @include font_ARTICLE_SMALL;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: $page_size) {

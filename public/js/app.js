@@ -230,11 +230,11 @@ __webpack_require__.r(__webpack_exports__);
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Jost:100,400&display=swap);", ""]);
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap);", ""]);
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap);", ""]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap);", ""]);
 
 // module
-exports.push([module.i, "* {\n  box-sizing: content-box;\n  padding: 0;\n  margin: 0;\n}\n*:focus {\n  outline: none;\n}\nbody {\n  background-color: #ffffff;\n  color: #323333;\n  font-family: \"Jost\";\n  font-size: 18px;\n  color: #323333;\n}\nul {\n  list-style: none;\n  list-style-type: none;\n  padding: 0;\n}\na {\n  color: inherit;\n  text-decoration: unset;\n}\nh1 {\n  font-family: \"Source Sans Pro\";\n  font-size: 35px;\n  color: #323333;\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\nbutton {\n  border: unset;\n}\n.useful_links_logos {\n  height: 30px;\n  width: 30px;\n  object-fit: contain;\n}\n.router-link-active {\n  color: #41b883;\n}", ""]);
+exports.push([module.i, "* {\n  box-sizing: content-box;\n  padding: 0;\n  margin: 0;\n}\n*:focus, *:active {\n  outline: none !important;\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\nbody {\n  background-color: #ffffff;\n  color: #323333;\n  font-family: \"Jost\";\n  font-size: 18px;\n  color: #323333;\n}\nul {\n  list-style: none;\n  list-style-type: none;\n  padding: 0;\n}\na {\n  color: inherit;\n  text-decoration: unset;\n}\nh1 {\n  font-family: \"Source Sans Pro\";\n  font-size: 35px;\n  color: #323333;\n}\nbutton {\n  border: unset;\n}\n.useful_links_logos {\n  height: 30px;\n  width: 30px;\n  object-fit: contain;\n}\n.router-link-active {\n  color: #41b883;\n}", ""]);
 
 // exports
 

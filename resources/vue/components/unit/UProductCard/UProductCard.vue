@@ -16,8 +16,6 @@
 <script>
 import { ULink } from "@/components/unit";
 
-const imgPath = "vivienne-westwood-asics-hyperdel-lyte-04_vylwcw.jpg"
-
 export default {
     data() {
         return {
