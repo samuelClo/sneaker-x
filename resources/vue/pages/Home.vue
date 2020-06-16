@@ -1,7 +1,7 @@
 <template>
     <main id="wrapperHome">
         <SCarouselProduct :productsPicture="arrivagePicture" :products-text="arrivageText" id="carousel-test"/>
-        <div id="productGrid">
+        <div id="productGrid" class="grid">
             <UProductCard
                 v-for="product in dixProduitsAleatoire"
                 :key="product.id"
@@ -11,7 +11,7 @@
                 :id="product.id"
             />
         </div>
-        <div id="newsGrid">
+        <div id="newsGrid" class="grid">
             <UNewsCard
                 v-for="news in cinqNewsLast"
                 :key="news.id"

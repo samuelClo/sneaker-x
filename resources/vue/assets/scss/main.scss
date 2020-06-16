@@ -45,7 +45,19 @@ button {
     object-fit: contain;
 }
 
-.router-link-active {
+.router-link-exact-active {
     color: $color_text_activ;
+}
+
+.grid {
+    margin: 0 auto;
+    width: 80vw;
+    background-color: inherit;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+    padding: 32px 32px 0;
+    transition: margin-top 0.2s;
+    position: relative;
+    z-index: 1;
 }
 

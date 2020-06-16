@@ -124,6 +124,7 @@ const dixProduitsAleatoire = [
 
 const allProduct = [
     {
+        id: 1,
         name: "Air Jordan 1 Mid",
         brand: "Jordan",
         color: "Alternate Swoosh",
@@ -135,6 +136,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 2,
         name: "Air Jordan 1 Mid",
         brand: "Jordan",
         color: "White Snakeskin",
@@ -146,6 +148,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 3,
         name: "Air Jordan 1 Low SE",
         brand: "Jordan",
         color: "Laser",
@@ -158,6 +161,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 4,
         name: "Melody Ehsani x Air Jordan OG",
         brand: "Jordan",
         color: "SP",
@@ -169,6 +173,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 5,
         name: "Air Jordan 1 High",
         brand: "Jordan",
         color: "Zoom R2T",
@@ -180,6 +185,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 6,
         name: "Air Jordan 12",
         brand: "Jordan",
         color: "OVO Black",
@@ -191,6 +197,7 @@ const allProduct = [
         brand_id: 2
     },
     {
+        id: 654,
         name: "Adidas UltraBoost DNA",
         brand: "Adidas",
         color: "Leather White",
@@ -203,6 +210,7 @@ const allProduct = [
         brand_id: 3
     },
     {
+        id: 413521,
         name: "Jonah Hill x Adidas Superstar",
         brand: "Adidas",
         color: "White",
@@ -214,6 +222,7 @@ const allProduct = [
         brand_id: 3
     },
     {
+        id: 6531,
         name: "Adidas 4D Run 1.0",
         brand: "Adidas",
         color: "Grey",
@@ -225,6 +234,7 @@ const allProduct = [
         brand_id: 3
     },
     {
+        id: 654312,
         name: "Adidas Ultra Boost 2020",
         brand: "Adidas",
         color: "Metallic Copper",
@@ -236,6 +246,7 @@ const allProduct = [
         brand_id: 3
     },
     {
+        id: 64132,
         name: "Air Force 1 Low",
         brand: "Nike",
         color: "Tear Away Pack",
@@ -247,6 +258,7 @@ const allProduct = [
         brand_id: 1
     },
     {
+        id: 312354,
         name: "Air Force 1 Low",
         brand: "Nike",
         color: "Sketch White Black",
@@ -259,6 +271,7 @@ const allProduct = [
         brand_id: 1
     },
     {
+        id: 6534132,
         name: "Blazer Mid '77",
         brand: "Nike",
         color: "Snakeskin White Red/Blue",
@@ -270,6 +283,7 @@ const allProduct = [
         brand_id: 1
     },
     {
+        id: 6312,
         name: "Nike Air Max",
         brand: "Nike",
         color: "Tailwind 4 SE ACG",
@@ -281,6 +295,7 @@ const allProduct = [
         brand_id: 1
     },
     {
+        id: 41321,
         name: "Nike KD 13",
         brand: "Nike",
         color: "Butterflies & Chains",
@@ -292,6 +307,7 @@ const allProduct = [
         brand_id: 1
     },
     {
+        id: 6321,
         name: "ASICS GEL-Lyte III",
         brand: "Asics",
         color: "Barcode",
@@ -303,6 +319,7 @@ const allProduct = [
         brand_id: 4
     },
     {
+        id: 646312,
         name: "Vivienne Westwood x Asics",
         brand: "Asics",
         color: "HyperGEL-LYTE",
@@ -314,6 +331,7 @@ const allProduct = [
         brand_id: 4
     },
     {
+        id: 64321,
         name: "Asics Gel Kayano 5 OG",
         brand: "Asics",
         color: "Blue Yellow",
@@ -325,6 +343,7 @@ const allProduct = [
         brand_id: 4
     },
     {
+        id: 654392,
         name: "Asics Gel Lyte III",
         brand: "Asics",
         color: "Lacquer Pack",
@@ -336,6 +355,7 @@ const allProduct = [
         brand_id: 4
     },
     {
+        id: 653132,
         name: "ASICS Gel-Lyte III",
         brand: "Asics",
         color: "Okayama Denim",
@@ -347,6 +367,7 @@ const allProduct = [
         brand_id: 4
     },
     {
+        id: 598741,
         name: "Def Jam x Puma Clyde Sky LX",
         brand: "Puma",
         color: "Fear of a Black Planet",
@@ -359,6 +380,7 @@ const allProduct = [
         brand_id: 5
     },
     {
+        id: 6798645132,
         name: "Puma Cell",
         brand: "Puma",
         color: "Venom",
@@ -370,6 +392,7 @@ const allProduct = [
         brand_id: 5
     },
     {
+        id: 8451321,
         name: "Puma Suede x Staple",
         brand: "Puma",
         color: "Pigeon",
@@ -381,6 +404,7 @@ const allProduct = [
         brand_id: 5
     },
     {
+        id: 6451321,
         name: "Puma Thunder",
         brand: "Puma",
         color: "Spectra Burgundy Black",
@@ -392,6 +416,7 @@ const allProduct = [
         brand_id: 5
     },
     {
+        id: 456531,
         name: "PUMA Thunder",
         brand: "Puma",
         color: "Electric",
@@ -404,4 +429,4 @@ const allProduct = [
     }
 ];
 
-export { arrivage, dixProduitsAleatoire, allProduct, cinqNewsLast };
+export {arrivage, dixProduitsAleatoire, allProduct, cinqNewsLast};

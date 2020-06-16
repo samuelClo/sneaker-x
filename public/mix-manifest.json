@@ -8,5 +8,8 @@
     "/Home.js": "/Home.js",
     "/News.js": "/News.js",
     "/PublicLayout.js": "/PublicLayout.js",
-    "/vendors~Article~Home~PublicLayout.js": "/vendors~Article~Home~PublicLayout.js"
+    "/vendors~Article~Home~PublicLayout.js": "/vendors~Article~Home~PublicLayout.js",
+    "/Catalog~Home.js": "/Catalog~Home.js",
+    "/Article~Catalog~Home~PublicLayout.js": "/Article~Catalog~Home~PublicLayout.js",
+    "/vendors~Article~Catalog~Home~PublicLayout.js": "/vendors~Article~Catalog~Home~PublicLayout.js"
 }

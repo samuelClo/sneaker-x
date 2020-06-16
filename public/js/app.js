@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","Catalog":"Catalog","News":"News","vendors~Article~Home~PublicLayout":"vendors~Article~Home~PublicLayout","Article~Home~PublicLayout":"Article~Home~PublicLayout","Article":"Article","Home":"Home","PublicLayout":"PublicLayout"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Catalog~Home":"Catalog~Home","Catalog":"Catalog","vendors~Article~Home~PublicLayout":"vendors~Article~Home~PublicLayout","Article~Home~PublicLayout":"Article~Home~PublicLayout","Article":"Article","Home":"Home","PublicLayout":"PublicLayout"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -234,7 +234,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Mo
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap);", ""]);
 
 // module
-exports.push([module.i, "* {\n  box-sizing: content-box;\n  padding: 0;\n  margin: 0;\n}\n*:focus, *:active {\n  outline: none !important;\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\nbody {\n  background-color: #ffffff;\n  color: #323333;\n  font-family: \"Jost\";\n  font-size: 18px;\n  color: #323333;\n}\nul {\n  list-style: none;\n  list-style-type: none;\n  padding: 0;\n}\na {\n  color: inherit;\n  text-decoration: unset;\n}\nh1 {\n  font-family: \"Source Sans Pro\";\n  font-size: 35px;\n  color: #323333;\n}\nbutton {\n  border: unset;\n}\n.useful_links_logos {\n  height: 30px;\n  width: 30px;\n  object-fit: contain;\n}\n.router-link-active {\n  color: #41b883;\n}", ""]);
+exports.push([module.i, "* {\n  box-sizing: content-box;\n  padding: 0;\n  margin: 0;\n}\n*:focus, *:active {\n  outline: none !important;\n}\nbutton::-moz-focus-inner {\n  border: 0;\n}\nbody {\n  background-color: #ffffff;\n  color: #323333;\n  font-family: \"Jost\";\n  font-size: 18px;\n  color: #323333;\n}\nul {\n  list-style: none;\n  list-style-type: none;\n  padding: 0;\n}\na {\n  color: inherit;\n  text-decoration: unset;\n}\nh1 {\n  font-family: \"Source Sans Pro\";\n  font-size: 35px;\n  color: #323333;\n}\nbutton {\n  border: unset;\n}\n.useful_links_logos {\n  height: 30px;\n  width: 30px;\n  object-fit: contain;\n}\n.router-link-exact-active {\n  color: #41b883;\n}\n.grid {\n  margin: 0 auto;\n  width: 80vw;\n  background-color: inherit;\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));\n  padding: 32px 32px 0;\n  transition: margin-top 0.2s;\n  position: relative;\n  z-index: 1;\n}", ""]);
 
 // exports
 
@@ -16551,7 +16551,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PublicLayout = function PublicLayout() {
-  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
+  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -16576,7 +16576,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
-  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
+  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
 };
 
 var About = function About() {
@@ -16584,7 +16584,7 @@ var About = function About() {
 };
 
 var Catalog = function Catalog() {
-  return __webpack_require__.e(/*! import() | Catalog */ "Catalog").then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
+  return Promise.all(/*! import() | Catalog */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Catalog")]).then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
 };
 
 var News = function News() {
@@ -16592,7 +16592,7 @@ var News = function News() {
 };
 
 var Article = function Article() {
-  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
+  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Article~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
 };
 
 var NotFound = function NotFound() {
