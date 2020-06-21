@@ -207,7 +207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      activeItem: null
+      activeItem: null,
+      sizes: [39, 40, 41, 42, 44, 44.5]
     };
   },
   methods: {
@@ -216,12 +217,12 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('onClick', size);
     }
   },
-  props: {
-    sizes: {
-      type: Array,
-      required: true
-    }
-  },
+  // props: {
+  //     sizes: {
+  //         type: Array,
+  //         required: true
+  //     }
+  // },
   components: {
     USizeSelect: _components_unit__WEBPACK_IMPORTED_MODULE_0__["USizeSelect"]
   }
@@ -489,7 +490,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       stylePicture: {
-        backgroundImage: "url(\"/storage/img/".concat(this.picture, "\")")
+        backgroundImage: "url(\"".concat(this.picture, "\")")
       }
     };
   },
@@ -501,7 +502,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     price: {
       required: true,
-      type: Number
+      type: String
     },
     picture: {
       required: true,
@@ -597,7 +598,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#carousel[data-v-85735276] {\n  margin: 0 auto;\n}\n.slide[data-v-85735276] {\n  display: flex;\n  flex-direction: column;\n}\n.picture[data-v-85735276] {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n.text[data-v-85735276] {\n  padding: 8px 0;\n  background-color: #389e70;\n  color: #ffffff;\n  text-align: center;\n}", ""]);
+exports.push([module.i, "#carousel[data-v-85735276] {\n  margin: 0 auto;\n}\n.slide[data-v-85735276] {\n  display: flex;\n  flex-direction: column;\n}\n.picture[data-v-85735276] {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n.text[data-v-85735276] {\n  padding: 8px 0;\n  background-color: #389e70;\n  color: #ffffff;\n  text-align: center;\n}\n.VueCarousel-inner[data-v-85735276] {\n  flex-basis: 300px;\n}", ""]);
 
 // exports
 
@@ -1209,7 +1210,7 @@ var render = function() {
           return _c("slide", { key: i, staticClass: "slide" }, [
             _c("img", {
               staticClass: "picture",
-              attrs: { src: "/storage/img/" + productPicture }
+              attrs: { src: "" + productPicture.image }
             }),
             _vm._v(" "),
             _vm.productsText && _vm.productsText[i]

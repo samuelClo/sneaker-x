@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('baskets', 'BasketController');
+Route::apiResource('brands', 'BrandController');
+Route::apiResource('images', 'ImageController');
+Route::apiResource('news', 'NewsController');
+Route::apiResource('orders', 'OrderController');
+
+//
+//Route::prefix('products')->group(function () {
+//    Route::get('{sort}/{max}', 'ProductController@getFilteredProduct');
+//});
+
+//Route::get('products/getTenRandom', 'ProductController@getTenRandomProducts');
+//Route::get('products/getTenRandom', function ()
+//{
+//    return "ehehhe";
+//});
+
+Route::apiResource('products', 'ProductController');

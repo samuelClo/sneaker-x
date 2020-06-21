@@ -13,7 +13,7 @@
             <slide class="slide" v-for="(productPicture, i) in productsPicture" :key="i">
                 <img
                     class="picture"
-                    :src="`/storage/img/${productPicture}`"
+                    :src="`${productPicture.image}`"
                 />
                 <span v-if="productsText && productsText[i]" class="text">{{ productsText[i] }}</span>
             </slide>

@@ -20,7 +20,7 @@ export default {
     data() {
         return {
             stylePicture: {
-                backgroundImage: `url("/storage/img/${this.picture}")`
+                backgroundImage: `url("${this.picture}")`
             }
         };
     },
@@ -32,7 +32,7 @@ export default {
         },
         price: {
             required: true,
-            type: Number
+            type: String
         },
         picture: {
             required: true,

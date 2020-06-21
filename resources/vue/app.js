@@ -1,11 +1,13 @@
 import Vue from "vue";
 
-import Routes from "@/router/index";
+import router from "@/router";
 import App from "@/App";
+import store from '@/store'
 
 const app = new Vue({
     el: "#app",
-    router: Routes,
+    router,
+    store,
     render: h => h(App)
 });
 

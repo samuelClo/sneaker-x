@@ -16,7 +16,10 @@ import { USizeSelect } from "@/components/unit";
 export default {
     data: function() {
         return {
-            activeItem: null
+            activeItem: null,
+            sizes: [
+                39,40,41,42,44,44.5
+            ]
         };
     },
     methods: {
@@ -25,12 +28,12 @@ export default {
             this.$emit('onClick', size)
         },
     },
-    props: {
-        sizes: {
-            type: Array,
-            required: true
-        }
-    },
+    // props: {
+    //     sizes: {
+    //         type: Array,
+    //         required: true
+    //     }
+    // },
     components: {
         USizeSelect
     }

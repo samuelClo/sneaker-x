@@ -3,13 +3,12 @@
     "/js/app.js": "/js/app.js",
     "/About.js": "/About.js",
     "/Article.js": "/Article.js",
-    "/Article~Home~PublicLayout.js": "/Article~Home~PublicLayout.js",
+    "/Article~Catalog~Home~PublicLayout.js": "/Article~Catalog~Home~PublicLayout.js",
     "/Catalog.js": "/Catalog.js",
+    "/Catalog~Home.js": "/Catalog~Home.js",
     "/Home.js": "/Home.js",
     "/News.js": "/News.js",
     "/PublicLayout.js": "/PublicLayout.js",
-    "/vendors~Article~Home~PublicLayout.js": "/vendors~Article~Home~PublicLayout.js",
-    "/Catalog~Home.js": "/Catalog~Home.js",
-    "/Article~Catalog~Home~PublicLayout.js": "/Article~Catalog~Home~PublicLayout.js",
-    "/vendors~Article~Catalog~Home~PublicLayout.js": "/vendors~Article~Catalog~Home~PublicLayout.js"
+    "/vendors~Article~Catalog~Home~PublicLayout.js": "/vendors~Article~Catalog~Home~PublicLayout.js",
+    "/vendors~Home.js": "/vendors~Home.js"
 }

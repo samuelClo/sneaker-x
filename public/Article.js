@@ -11,6 +11,13 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_structural__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/structural */ "./resources/vue/components/structural/index.js");
 /* harmony import */ var _components_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/unit */ "./resources/vue/components/unit/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -37,22 +44,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      product: {
-        name: "Air Jordan 1 Mid",
-        brand: "Jordan",
-        color: "Alternate Swoosh",
-        description: "Cette version mid de la populaire Air Jordan 1 est dotée d’une empeigne en cuir, affichant une combinaison intemporelle de noir et de blanc. On découvre ensuite des swoos en cuir verni, déclinés en rouge sur les côtés extérieurs et en jaune à l’intérieur. Un Jumpman sur la languette, un logo Wings gravé au niveau de la cheville, ainsi qu'une semelle blanche combinée à une outsole vert émeraude, finalisent le design de Peter Moore.",
-        price: 110,
-        release_date: "2020-04-18",
-        images: ["air-jordan-1-mid-alternate-swoosh-bq6472-063-pic1_zd4ibz.jpg", "air-jordan-1-low-se-black-laser-blue-ck3022-004-pic01_vghl4c.jpg", "melody-ehsani-air-jordan-womens-CQ2514-005-pic01_o37arh.jpg"],
-        brand_id: 2,
-        sizes: [40, 40.5, 42, 42.5, 43, 44, 44.5, 45, 45.5]
-      },
+      // product: {
+      //     name: "Air Jordan 1 Mid",
+      //     brand: "Jordan",
+      //     color: "Alternate Swoosh",
+      //     description:
+      //         "Cette version mid de la populaire Air Jordan 1 est dotée d’une empeigne en cuir, affichant une combinaison intemporelle de noir et de blanc. On découvre ensuite des swoos en cuir verni, déclinés en rouge sur les côtés extérieurs et en jaune à l’intérieur. Un Jumpman sur la languette, un logo Wings gravé au niveau de la cheville, ainsi qu'une semelle blanche combinée à une outsole vert émeraude, finalisent le design de Peter Moore.",
+      //     price: 110,
+      //     release_date: "2020-04-18",
+      //     images: [
+      //         "air-jordan-1-mid-alternate-swoosh-bq6472-063-pic1_zd4ibz.jpg",
+      //         "air-jordan-1-low-se-black-laser-blue-ck3022-004-pic01_vghl4c.jpg",
+      //         "melody-ehsani-air-jordan-womens-CQ2514-005-pic01_o37arh.jpg"
+      //     ],
+      //     brand_id: 2,
+      //     sizes: [40, 40.5, 42, 42.5, 43, 44, 44.5, 45, 45.5]
+      // },
       selectedProduct: {
         size: null,
         quantity: 1,
@@ -71,9 +85,14 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedProduct.color = color;
     }
   },
-  beforeMount: function beforeMount() {
-    console.log(this.$route.params.articleId);
+  mounted: function mounted() {
+    this.$store.dispatch('products/getProduct', {
+      id: this.$route.params.articleId
+    });
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+    product: 'products/product'
+  })),
   components: {
     SSizeSelect: _components_structural__WEBPACK_IMPORTED_MODULE_0__["SSizeSelect"],
     UButton: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UButton"],
@@ -96,7 +115,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#test {\n  flex: 5;\n}\n#product_page #carousel {\n  object-fit: contain;\n  max-width: 100%;\n  max-height: 100%;\n}", ""]);
+exports.push([module.i, "#test {\n  flex: 5;\n  height: 723px;\n}\n#product_page #carousel {\n  object-fit: contain;\n  max-width: 100%;\n  max-height: 100%;\n}", ""]);
 
 // exports
 
@@ -115,7 +134,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#product_page[data-v-d752518c] {\n  max-width: 1500px;\n  margin: 0 auto;\n  display: flex;\n}\n#assets_wrapper[data-v-d752518c] {\n  padding: 10px 15px;\n  flex: 3;\n}\n#assets_wrapper h3[data-v-d752518c] {\n  font-family: \"Montserrat\" !important;\n  font-weight: 800;\n  color: black;\n  font-size: 32px;\n  text-transform: uppercase;\n}\n#price[data-v-d752518c] {\n  font-family: \"Jost\";\n  font-size: 20px;\n  color: #323333;\n  margin-bottom: 40px;\n}\n#select_wrapper[data-v-d752518c] {\n  display: flex;\n  flex-direction: column;\n  margin: 10px 0;\n}\n#select_wrapper input[data-v-d752518c] {\n  width: 35px;\n  border: 1px solid #e8e8e8;\n  padding: 10px;\n  margin: 17px 0 0 7px;\n}\nbutton[data-v-d752518c] {\n  margin-top: 40px;\n  font-family: \"Montserrat\" !important;\n  font-weight: 800;\n  color: black;\n  font-size: 32px;\n}\np[data-v-d752518c] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  margin-bottom: 10px;\n}\n@media screen and (max-width: 1500px) {\n#wrapper[data-v-d752518c] {\n    margin: 0 auto;\n    display: flex;\n    flex-direction: column;\n}\n}", ""]);
+exports.push([module.i, "#product_page[data-v-d752518c] {\n  max-width: 1500px;\n  margin: 0 auto;\n  display: flex;\n}\n#assets_wrapper[data-v-d752518c] {\n  padding: 10px 15px;\n  flex: 3;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n#assets_wrapper h3[data-v-d752518c] {\n  font-family: \"Montserrat\" !important;\n  font-weight: 800;\n  color: black;\n  font-size: 32px;\n  text-transform: uppercase;\n}\n#price[data-v-d752518c] {\n  font-family: \"Jost\";\n  font-size: 20px;\n  color: #323333;\n  margin-bottom: 40px;\n}\n#select_wrapper[data-v-d752518c] {\n  display: flex;\n  flex-direction: column;\n  margin: 10px 0;\n}\n#select_wrapper input[data-v-d752518c] {\n  width: 35px;\n  border: 1px solid #e8e8e8;\n  padding: 10px;\n  margin: 17px 0 0 7px;\n}\nbutton[data-v-d752518c] {\n  margin-top: 40px;\n  font-family: \"Montserrat\" !important;\n  font-weight: 800;\n  color: black;\n  font-size: 32px;\n}\np[data-v-d752518c] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  margin-bottom: 10px;\n}\n@media screen and (max-width: 1500px) {\n#wrapper[data-v-d752518c] {\n    display: flex;\n    flex-direction: column;\n}\n}", ""]);
 
 // exports
 
@@ -201,13 +220,15 @@ var render = function() {
     "article",
     { attrs: { id: "product_page" } },
     [
-      _c("SCarouselProduct", {
-        attrs: {
-          id: "test",
-          "products-picture": _vm.product.images,
-          navigationEnabled: false
-        }
-      }),
+      _vm.product.image
+        ? _c("SCarouselProduct", {
+            attrs: {
+              id: "test",
+              "products-picture": _vm.product.images,
+              navigationEnabled: false
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "aside",
