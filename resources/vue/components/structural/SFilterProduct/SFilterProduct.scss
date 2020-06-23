@@ -3,6 +3,7 @@
     box-shadow: $color_primary_default 0px 1px 3px, $color_primary_default 0px 1px 2px;
     padding: 10px 20px;
     position: relative;
+    cursor: pointer;
 }
 
 #wrapper {
@@ -26,19 +27,25 @@
     display: block;
 }
 
-#brandName {
-    cursor: pointer;
-}
-
 .item {
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
     &:last-child {
         padding-bottom: 0;
     }
     img {
         margin-right: 20px;
+    }
+}
+
+#all {
+    @include font_ARTICLE_SMALL;
+    span {
+        margin-bottom: 5px;
+        cursor: pointer;
+        color: $color_text_activ;
     }
 }

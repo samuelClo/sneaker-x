@@ -9,9 +9,15 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/fakedata/fake.data */ "./resources/vue/fakedata/fake.data.js");
-/* harmony import */ var _components_unit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/unit */ "./resources/vue/components/unit/index.js");
-/* harmony import */ var _components_structural__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/structural */ "./resources/vue/components/structural/index.js");
+/* harmony import */ var _components_unit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/unit */ "./resources/vue/components/unit/index.js");
+/* harmony import */ var _components_structural__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/structural */ "./resources/vue/components/structural/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -36,19 +42,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      allProduct: _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__["allProduct"],
-      brands: _fakedata_fake_data__WEBPACK_IMPORTED_MODULE_0__["brands"]
+      isFiltered: false
     };
   },
   methods: {
     handleBrandClick: function handleBrandClick(brandId) {
-      console.log(brandId);
+      this.$store.dispatch('products/getRelatedBrandProduct', {
+        id: brandId
+      });
+      this.isFiltered = true;
+    },
+    handleAllProductClick: function handleAllProductClick() {
+      this.isFiltered = false;
     }
   },
   components: {
-    UProductCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UProductCard"],
-    SFilterProduct: _components_structural__WEBPACK_IMPORTED_MODULE_2__["SFilterProduct"]
-  }
+    UProductCard: _components_unit__WEBPACK_IMPORTED_MODULE_0__["UProductCard"],
+    SFilterProduct: _components_structural__WEBPACK_IMPORTED_MODULE_1__["SFilterProduct"]
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('products/getProducts');
+    this.$store.dispatch('brands/getBrands');
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+    allProduct: 'products/products',
+    brands: 'brands/brands',
+    filteredProducts: 'products/filteredProducts'
+  })), {}, {
+    data: function data() {
+      return this.isFiltered ? this.filteredProducts : this.allProduct;
+    }
+  })
 });
 
 /***/ }),
@@ -124,13 +148,16 @@ var render = function() {
       _vm._v(" "),
       _c("SFilterProduct", {
         attrs: { brands: _vm.brands },
-        on: { onBrandClick: _vm.handleBrandClick }
+        on: {
+          onBrandClick: _vm.handleBrandClick,
+          onAllProductClick: _vm.handleAllProductClick
+        }
       }),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "grid", attrs: { id: "productGrid" } },
-        _vm._l(_vm.allProduct, function(product) {
+        _vm._l(_vm.data, function(product) {
           return _c("UProductCard", {
             key: product.id,
             attrs: {

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Article":"Article","Catalog~Home":"Catalog~Home","Catalog":"Catalog","PublicLayout":"PublicLayout","vendors~Home":"vendors~Home","Home":"Home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Article":"Article","Catalog":"Catalog","PublicLayout":"PublicLayout","vendors~Home":"vendors~Home","Home":"Home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -20257,7 +20257,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
-  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Home"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
+  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Home"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
 };
 
 var About = function About() {
@@ -20265,7 +20265,7 @@ var About = function About() {
 };
 
 var Catalog = function Catalog() {
-  return Promise.all(/*! import() | Catalog */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog~Home"), __webpack_require__.e("Catalog")]).then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
+  return Promise.all(/*! import() | Catalog */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog")]).then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
 };
 
 var News = function News() {
@@ -20324,7 +20324,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/products */ "./resources/vue/store/modules/products/index.js");
 /* harmony import */ var _modules_news__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/news */ "./resources/vue/store/modules/news/index.js");
+/* harmony import */ var _modules_brands__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/brands */ "./resources/vue/store/modules/brands/index.js");
  // axios.defaults.headers.common['Content-Type'] = 'application/json'
+
 
 
 
@@ -20334,9 +20336,161 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   modules: {
     products: _modules_products__WEBPACK_IMPORTED_MODULE_3__["default"],
-    news: _modules_news__WEBPACK_IMPORTED_MODULE_4__["default"]
+    news: _modules_news__WEBPACK_IMPORTED_MODULE_4__["default"],
+    brands: _modules_brands__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/brands/actions.js":
+/*!*******************************************************!*\
+  !*** ./resources/vue/store/modules/brands/actions.js ***!
+  \*******************************************************/
+/*! exports provided: getBrands */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBrands", function() { return getBrands; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var getBrands = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+    var commit, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            commit = _ref.commit;
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/brands');
+
+          case 4:
+            res = _context.sent;
+            commit('getBrands', res.data.payload);
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.error(_context.t0);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 8]]);
+  }));
+
+  return function getBrands(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/brands/getters.js":
+/*!*******************************************************!*\
+  !*** ./resources/vue/store/modules/brands/getters.js ***!
+  \*******************************************************/
+/*! exports provided: brands, brand */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "brands", function() { return brands; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "brand", function() { return brand; });
+var brands = function brands(state) {
+  return state.brands;
+};
+
+var brand = function brand(state) {
+  return state.brand;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/brands/index.js":
+/*!*****************************************************!*\
+  !*** ./resources/vue/store/modules/brands/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/vue/store/modules/brands/state.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/vue/store/modules/brands/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ "./resources/vue/store/modules/brands/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/vue/store/modules/brands/mutations.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: _state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_2__,
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__,
+  actions: _actions__WEBPACK_IMPORTED_MODULE_1__
+});
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/brands/mutations.js":
+/*!*********************************************************!*\
+  !*** ./resources/vue/store/modules/brands/mutations.js ***!
+  \*********************************************************/
+/*! exports provided: getBrands, getBrand */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBrands", function() { return getBrands; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBrand", function() { return getBrand; });
+var getBrands = function getBrands(state, brands) {
+  state.brands = brands;
+};
+
+var getBrand = function getBrand(state, brand) {
+  state.brand = brand;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/brands/state.js":
+/*!*****************************************************!*\
+  !*** ./resources/vue/store/modules/brands/state.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  brands: [],
+  brand: {}
+});
 
 /***/ }),
 
@@ -20570,7 +20724,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/vue/store/modules/products/actions.js ***!
   \*********************************************************/
-/*! exports provided: getProducts, getProduct, getRandomProducts */
+/*! exports provided: getProducts, getProduct, getRandomProducts, getRelatedBrandProduct */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20578,6 +20732,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProducts", function() { return getProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProduct", function() { return getProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandomProducts", function() { return getRandomProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRelatedBrandProduct", function() { return getRelatedBrandProduct; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -20636,26 +20791,35 @@ var getProduct = /*#__PURE__*/function () {
             commit = _ref3.commit;
             id = _ref4.id;
             _context2.prev = 2;
-            _context2.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/products/".concat(id));
+
+            if (id) {
+              _context2.next = 5;
+              break;
+            }
+
+            throw "Id is not correctely defined";
 
           case 5:
+            _context2.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/products/".concat(id));
+
+          case 7:
             res = _context2.sent;
             commit('getProduct', res.data.payload);
-            _context2.next = 12;
+            _context2.next = 14;
             break;
 
-          case 9:
-            _context2.prev = 9;
+          case 11:
+            _context2.prev = 11;
             _context2.t0 = _context2["catch"](2);
             console.error(_context2.t0);
 
-          case 12:
+          case 14:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[2, 9]]);
+    }, _callee2, null, [[2, 11]]);
   }));
 
   return function getProduct(_x2, _x3) {
@@ -20673,30 +20837,75 @@ var getRandomProducts = /*#__PURE__*/function () {
             commit = _ref6.commit;
             value = _ref7.value;
             _context3.prev = 2;
-            _context3.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/products?sort=random&max=".concat(value));
+
+            if (value) {
+              _context3.next = 5;
+              break;
+            }
+
+            throw "Value is not correctely defined";
 
           case 5:
+            _context3.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/products?sort=random&max=".concat(value));
+
+          case 7:
             res = _context3.sent;
             commit('getProducts', res.data.payload);
-            _context3.next = 12;
+            _context3.next = 14;
             break;
 
-          case 9:
-            _context3.prev = 9;
+          case 11:
+            _context3.prev = 11;
             _context3.t0 = _context3["catch"](2);
             console.error(_context3.t0);
 
-          case 12:
+          case 14:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[2, 9]]);
+    }, _callee3, null, [[2, 11]]);
   }));
 
   return function getRandomProducts(_x4, _x5) {
     return _ref8.apply(this, arguments);
+  };
+}();
+
+var getRelatedBrandProduct = /*#__PURE__*/function () {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref9, _ref10) {
+    var commit, id;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            commit = _ref9.commit;
+            id = _ref10.id;
+            // try {
+            //     if (!id)
+            //         throw "Id is not correctely defined"
+            //
+            //     const res = await axios.get(`http://127.0.0.1:8000/api/products?brand_id=${id}`)
+            //     const {products, ...brand} = res.data.payload
+            //
+            //     commit('getProducts', products)
+            //     // commit('getBrand', brand)
+            // } catch (e) {
+            //     console.error(e)
+            // }
+            commit('getRelatedBrandProduct', id);
+
+          case 3:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function getRelatedBrandProduct(_x6, _x7) {
+    return _ref11.apply(this, arguments);
   };
 }();
 
@@ -20708,19 +20917,24 @@ var getRandomProducts = /*#__PURE__*/function () {
 /*!*********************************************************!*\
   !*** ./resources/vue/store/modules/products/getters.js ***!
   \*********************************************************/
-/*! exports provided: products, product */
+/*! exports provided: products, product, filteredProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "products", function() { return products; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "product", function() { return product; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filteredProducts", function() { return filteredProducts; });
 var products = function products(state) {
   return state.products;
 };
 
 var product = function product(state) {
   return state.product;
+};
+
+var filteredProducts = function filteredProducts(state) {
+  return state.filteredProducts;
 };
 
 
@@ -20758,19 +20972,27 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************!*\
   !*** ./resources/vue/store/modules/products/mutations.js ***!
   \***********************************************************/
-/*! exports provided: getProducts, getProduct */
+/*! exports provided: getProducts, getProduct, getRelatedBrandProduct */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProducts", function() { return getProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProduct", function() { return getProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRelatedBrandProduct", function() { return getRelatedBrandProduct; });
 var getProducts = function getProducts(state, products) {
   state.products = products;
 };
 
 var getProduct = function getProduct(state, product) {
   state.product = product;
+};
+
+var getRelatedBrandProduct = function getRelatedBrandProduct(state, brandId) {
+  var products = state.products;
+  state.filteredProducts = products.filter(function (product) {
+    return product.brand_id === brandId;
+  });
 };
 
 
@@ -20788,7 +21010,8 @@ var getProduct = function getProduct(state, product) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   products: [],
-  product: {}
+  product: {},
+  filteredProducts: []
 });
 
 /***/ }),

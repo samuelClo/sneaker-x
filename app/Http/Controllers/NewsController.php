@@ -37,13 +37,18 @@ class NewsController extends Controller
 
         if ($request->quantity) {
             try {
-                $all = News::orderBy('created_at', 'asc')->take(5)->get();
+                $all = News::orderBy('created_at', 'asc')
+                    ->where('publish_at', '<=', Carbon::now())
+                    ->take(5)
+                    ->get();
             } catch (Exception $err) {
                 return $this->handleError($err->errorInfo[2]);
             }
         } else {
             try {
-                $all = News::orderBy('created_at', 'asc')->get();
+                $all = News::orderBy('created_at', 'asc')
+                    ->where('publish_at', '<=', Carbon::now())
+                    ->get();
             } catch (Exception $err) {
                 return $this->handleError($err->errorInfo[2]);
             }

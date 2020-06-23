@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ProductController extends Controller
      * @param int $statusCode
      * @return JsonResponse
      */
-    public function handleError($error, int $statusCode = 200)
+    public function handleError($error, int $statusCode = 400)
     {
         return response()->json([
             'error' => $error,
@@ -29,27 +30,29 @@ class ProductController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request )
+    public function index(Request $request)
     {
         $error = null;
         $all = null;
 
         try {
-            $all = null;
-
-            if (($request->input('sort') == "random") && intval($request->input('max'), 10) > 0)
-            {
-                $all = Product::all()->random($request->input('max'));
-            }
-            else
-            {
-                $all = Product::all();
-            }
-        } catch(Exception $err) {
-            return $this->handleError($err->errorInfo[2]);
+            $all = Product::where('is_published', 1)
+                ->when(request('sort') == "random", function ($query) {
+                    $query->inRandomOrder();
+                })
+                ->when(request('max'), function ($query) {
+                    $query->take(request('max'));
+                })
+                ->when(request('search'), function ($query) {
+                    $search = request('search');
+                    $query->where('products.name', 'LIKE', '%' . $search . '%');
+                })
+                ->get();
+        } catch (Exception $err) {
+            return $this->handleError($err);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $all,
         ]);
@@ -73,11 +76,11 @@ class ProductController extends Controller
 
         try {
             $all = Product::all()->random(10);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             return $this->handleError($err->errorInfo[2]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $all,
         ]);
@@ -97,11 +100,11 @@ class ProductController extends Controller
 
         try {
             $el = Product::create($requestRes);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             return $this->handleError($err->errorInfo[2]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -120,13 +123,13 @@ class ProductController extends Controller
 
         try {
             $el = Product::where("id", $id)->with('images')->first();
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
             return $this->handleError($error, 404);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -147,7 +150,7 @@ class ProductController extends Controller
 
         try {
             $el = Product::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
             return $this->handleError($error, 404);
@@ -155,11 +158,11 @@ class ProductController extends Controller
 
         try {
             $el->update($requestRes);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -178,7 +181,7 @@ class ProductController extends Controller
 
         try {
             $el = Product::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
             return $this->handleError($error, 404);
@@ -186,11 +189,11 @@ class ProductController extends Controller
 
         try {
             $el->delete($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
         ]);
     }

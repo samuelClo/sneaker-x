@@ -7,6 +7,7 @@ import Vuex from 'vuex'
 
 import products from './modules/products'
 import news from './modules/news'
+import brands from './modules/brands'
 
 Vue.use(Vuex)
 
@@ -14,5 +15,6 @@ export default new Vuex.Store({
     modules: {
         products,
         news,
+        brands
     }
 })

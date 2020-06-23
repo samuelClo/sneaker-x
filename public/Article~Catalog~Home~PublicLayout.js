@@ -88,6 +88,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+var listener = null;
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -95,12 +101,32 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    handleClick: function handleClick() {
-      this.isVisible = !this.isVisible;
+    handleClick: function handleClick(e) {
+      this.isVisible = true;
     },
     handleBrandClick: function handleBrandClick(brandId) {
+      console.log('gegeg');
+      this.isVisible = false;
       this.$emit("onBrandClick", brandId);
+    },
+    handleAllProductClick: function handleAllProductClick(e) {
+      this.$emit('onAllProductClick');
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    listener = function listener(e) {
+      var wrapper = _this.$refs.wrapper;
+      var targetClick = e.target;
+      if (wrapper.contains(targetClick)) return;
+      _this.isVisible = false;
+    };
+
+    document.addEventListener('click', listener);
+  },
+  beforeDestroy: function beforeDestroy() {
+    document.removeEventListener('click', listener);
   },
   props: {
     brands: {
@@ -323,7 +349,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
+var listener = null;
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -355,13 +386,18 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    document.addEventListener('click', function (e) {
+    listener = function listener(e) {
       var colorPicker = _this.$refs.colorPicker;
       var boutonColor = _this.$refs.boutonColor;
       var targetClick = e.target;
       if (colorPicker.contains(targetClick) || boutonColor.contains(targetClick)) return;
       _this.isSelected = false;
-    });
+    };
+
+    document.addEventListener('click', listener);
+  },
+  beforeDestroy: function beforeDestroy() {
+    document.removeEventListener('click', listener);
   },
   methods: {
     handleClick: function handleClick() {
@@ -617,7 +653,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#brandName[data-v-b3d78cf6] {\n  border-radius: 4px;\n  box-shadow: #389e70 0px 1px 3px, #389e70 0px 1px 2px;\n  padding: 10px 20px;\n  position: relative;\n}\n#wrapper[data-v-b3d78cf6] {\n  display: flex;\n  padding: 10px 10%;\n  user-select: none;\n}\n.selectWrapper[data-v-b3d78cf6] {\n  display: none;\n  position: absolute;\n  z-index: 2;\n  padding: 15px 15px;\n  border: 1px solid #389e70;\n  left: 132px;\n  border-radius: 5px;\n  background-color: #ffffff;\n}\n.active[data-v-b3d78cf6] {\n  display: block;\n}\n#brandName[data-v-b3d78cf6] {\n  cursor: pointer;\n}\n.item[data-v-b3d78cf6] {\n  padding-bottom: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.item[data-v-b3d78cf6]:last-child {\n  padding-bottom: 0;\n}\n.item img[data-v-b3d78cf6] {\n  margin-right: 20px;\n}", ""]);
+exports.push([module.i, "#brandName[data-v-b3d78cf6] {\n  border-radius: 4px;\n  box-shadow: #389e70 0px 1px 3px, #389e70 0px 1px 2px;\n  padding: 10px 20px;\n  position: relative;\n  cursor: pointer;\n}\n#wrapper[data-v-b3d78cf6] {\n  display: flex;\n  padding: 10px 10%;\n  user-select: none;\n}\n.selectWrapper[data-v-b3d78cf6] {\n  display: none;\n  position: absolute;\n  z-index: 2;\n  padding: 15px 15px;\n  border: 1px solid #389e70;\n  left: 132px;\n  border-radius: 5px;\n  background-color: #ffffff;\n}\n.active[data-v-b3d78cf6] {\n  display: block;\n}\n.item[data-v-b3d78cf6] {\n  padding-bottom: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n}\n.item[data-v-b3d78cf6]:last-child {\n  padding-bottom: 0;\n}\n.item img[data-v-b3d78cf6] {\n  margin-right: 20px;\n}\n#all[data-v-b3d78cf6] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n}\n#all span[data-v-b3d78cf6] {\n  margin-bottom: 5px;\n  cursor: pointer;\n  color: #41b883;\n}", ""]);
 
 // exports
 
@@ -1250,32 +1286,55 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("ul", { attrs: { id: "wrapper" } }, [
-      _c("li", { attrs: { id: "brandName" }, on: { click: _vm.handleClick } }, [
-        _vm._v("Marque >\n            "),
-        _c(
-          "ul",
-          { staticClass: "selectWrapper", class: { active: _vm.isVisible } },
-          _vm._l(_vm.brands, function(brand) {
-            return _c(
-              "li",
-              {
-                staticClass: "item",
-                on: {
-                  click: function($event) {
-                    return _vm.handleBrandClick(brand.id)
-                  }
-                }
-              },
-              [
-                _c("img", { attrs: { src: brand.image, alt: "brand.name" } }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(brand.name))])
-              ]
-            )
-          }),
-          0
-        )
-      ])
+      _c(
+        "li",
+        {
+          ref: "wrapper",
+          attrs: { id: "brandName" },
+          on: { click: _vm.handleClick }
+        },
+        [
+          _vm._v("\n            Marque >\n            "),
+          _c(
+            "ul",
+            { staticClass: "selectWrapper", class: { active: _vm.isVisible } },
+            [
+              _c("div", { attrs: { id: "all" } }, [
+                _c("span", { on: { click: _vm.handleAllProductClick } }, [
+                  _vm._v("Tous les produits")
+                ]),
+                _vm._v("\n                    Marques :\n                ")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.brands, function(brand) {
+                return _c(
+                  "li",
+                  {
+                    ref: "item",
+                    refInFor: true,
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        return _vm.handleBrandClick(brand.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      attrs: { src: brand.image, alt: "brand.name" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(brand.name))]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(" __" + _vm._s(brand.products_count))])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        ]
+      )
     ])
   ])
 }

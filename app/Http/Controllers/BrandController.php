@@ -10,6 +10,20 @@ use Exception;
 class BrandController extends Controller
 {
     /**
+     * Handle error
+     *
+     * @param $error
+     * @param int $statusCode
+     * @return JsonResponse
+     */
+    public function handleError($error, int $statusCode = 400)
+    {
+        return response()->json([
+            'error' => $error,
+        ], $statusCode);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return JsonResponse
@@ -20,16 +34,12 @@ class BrandController extends Controller
         $all = null;
 
         try {
-            $all = Brand::orderBy('created_at', 'asc')->get();
-        } catch(Exception $err) {
-            $error = $err->errorInfo[2];
-
-            return  response()->json([
-                'error' => $error,
-            ]);
+            $all = Brand::orderBy('created_at', 'asc')->withCount('products')->get();
+        } catch (Exception $err) {
+            return $this->handleError($err->errorInfo[2]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $all,
         ]);
@@ -49,15 +59,11 @@ class BrandController extends Controller
 
         try {
             $el = Brand::create($requestRes);
-        } catch(Exception $err) {
-            $error = $err->errorInfo[2];
-
-            return  response()->json([
-                'error' => $error,
-            ]);
+        } catch (Exception $err) {
+            return $this->handleError($err->errorInfo[2]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -76,15 +82,13 @@ class BrandController extends Controller
 
         try {
             $el = Brand::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
-                'error' => $error,
-            ], 404);
+            return $this->handleError($error, 404);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'Brand' => $el,
         ]);
@@ -105,21 +109,19 @@ class BrandController extends Controller
 
         try {
             $el = Brand::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
-                'error' => $error,
-            ], 404);
+            return $this->handleError($error, 404);
         }
 
         try {
             $el->update($requestRes);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -138,21 +140,19 @@ class BrandController extends Controller
 
         try {
             $el = Brand::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
-                'error' => $error,
-            ], 404);
+            return $this->handleError($error, 404);
         }
 
         try {
             $el->delete($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
         ]);
     }
