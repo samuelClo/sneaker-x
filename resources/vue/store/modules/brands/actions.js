@@ -8,7 +8,6 @@ const getBrands = async ({commit}) => {
     } catch (e) {
         console.error(e)
     }
-
 }
 
 export {

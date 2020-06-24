@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { SNavBar, SCarouselProduct } from "@/components/structural";
+import { SNavBar } from "@/components/structural";
 
 export default {
     components: {

@@ -1,0 +1,25 @@
+#wrapperProduct {
+    display: flex;
+    max-width: 800px;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    @include font_ARTICLE_SMALL;
+    padding: 10px;
+}
+#pictureProduct {
+    width: 400px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+#wrapperAssets {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#price {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}

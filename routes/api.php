@@ -21,9 +21,9 @@ Route::apiResource('news', 'NewsController');
 Route::apiResource('orders', 'OrderController');
 
 //
-//Route::prefix('products')->group(function () {
-//    Route::get('{sort}/{max}', 'ProductController@getFilteredProduct');
-//});
+Route::prefix('products')->group(function () {
+    Route::post('getProductsByIds', 'ProductController@getProductsByIds');
+});
 
 //Route::get('products/getTenRandom', 'ProductController@getTenRandomProducts');
 //Route::get('products/getTenRandom', function ()

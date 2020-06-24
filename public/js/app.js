@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","News":"News","vendors~Article~Catalog~Home~PublicLayout":"vendors~Article~Catalog~Home~PublicLayout","Article~Catalog~Home~PublicLayout":"Article~Catalog~Home~PublicLayout","Article":"Article","Catalog":"Catalog","PublicLayout":"PublicLayout","vendors~Home":"vendors~Home","Home":"Home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"404":"404","About":"About","vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout":"vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout","AllNews~Article~Basket~Catalog~Home~News~PublicLayout":"AllNews~Article~Basket~Catalog~Home~News~PublicLayout","AllNews":"AllNews","News":"News","vendors~Article~Basket~Catalog~Home~PublicLayout":"vendors~Article~Basket~Catalog~Home~PublicLayout","Article~Basket~Catalog~Home~PublicLayout":"Article~Basket~Catalog~Home~PublicLayout","Article":"Article","Basket":"Basket","Catalog":"Catalog","PublicLayout":"PublicLayout","vendors~Home":"vendors~Home","Home":"Home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -4046,7 +4046,7 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.1.6
+  * vue-router v3.3.4
   * (c) 2020 Evan You
   * @license MIT
   */
@@ -4068,12 +4068,8 @@ function isError (err) {
   return Object.prototype.toString.call(err).indexOf('Error') > -1
 }
 
-function isExtendedError (constructor, err) {
-  return (
-    err instanceof constructor ||
-    // _name is to support IE9 too
-    (err && (err.name === constructor.name || err._name === constructor._name))
-  )
+function isRouterError (err, errorType) {
+  return isError(err) && err._isRouter && (errorType == null || err.type === errorType)
 }
 
 function extend (a, b) {
@@ -4651,7 +4647,7 @@ function parse (str, options) {
  * @return {!function(Object=, Object=)}
  */
 function compile (str, options) {
-  return tokensToFunction(parse(str, options))
+  return tokensToFunction(parse(str, options), options)
 }
 
 /**
@@ -4681,14 +4677,14 @@ function encodeAsterisk (str) {
 /**
  * Expose a method for transforming tokens into the path function.
  */
-function tokensToFunction (tokens) {
+function tokensToFunction (tokens, options) {
   // Compile all the tokens into regexps.
   var matches = new Array(tokens.length);
 
   // Compile all the patterns before compilation.
   for (var i = 0; i < tokens.length; i++) {
     if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$');
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options));
     }
   }
 
@@ -4801,7 +4797,7 @@ function attachKeys (re, keys) {
  * @return {string}
  */
 function flags (options) {
-  return options.sensitive ? '' : 'i'
+  return options && options.sensitive ? '' : 'i'
 }
 
 /**
@@ -5092,6 +5088,10 @@ var Link = {
     replace: Boolean,
     activeClass: String,
     exactActiveClass: String,
+    ariaCurrentValue: {
+      type: String,
+      default: 'page'
+    },
     event: {
       type: eventTypes,
       default: 'click'
@@ -5136,6 +5136,8 @@ var Link = {
     classes[activeClass] = this.exact
       ? classes[exactActiveClass]
       : isIncludedRoute(current, compareTarget);
+
+    var ariaCurrentValue = classes[exactActiveClass] ? this.ariaCurrentValue : null;
 
     var handler = function (e) {
       if (guardEvent(e)) {
@@ -5185,7 +5187,7 @@ var Link = {
 
     if (this.tag === 'a') {
       data.on = on;
-      data.attrs = { href: href };
+      data.attrs = { href: href, 'aria-current': ariaCurrentValue };
     } else {
       // find the first <a> child and apply listener and href
       var a = findAnchor(this.$slots.default);
@@ -5213,6 +5215,7 @@ var Link = {
 
         var aAttrs = (a.data.attrs = extend({}, a.data.attrs));
         aAttrs.href = href;
+        aAttrs['aria-current'] = ariaCurrentValue;
       } else {
         // doesn't have <a> child, apply listener to self
         data.on = on;
@@ -5731,6 +5734,10 @@ function setStateKey (key) {
 var positionStore = Object.create(null);
 
 function setupScroll () {
+  // Prevent browser scroll behavior on History popstate
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
   // Fix for #1585 for Firefox
   // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
   // Fix for #2774 Support for apps loaded from Windows file shares not mapped to network drives: replaced location.origin with
@@ -5742,12 +5749,10 @@ function setupScroll () {
   var stateCopy = extend({}, window.history.state);
   stateCopy.key = getStateKey();
   window.history.replaceState(stateCopy, '', absolutePath);
-  window.addEventListener('popstate', function (e) {
-    saveScrollPosition();
-    if (e.state && e.state.key) {
-      setStateKey(e.state.key);
-    }
-  });
+  window.addEventListener('popstate', handlePopState);
+  return function () {
+    window.removeEventListener('popstate', handlePopState);
+  }
 }
 
 function handleScroll (
@@ -5806,6 +5811,13 @@ function saveScrollPosition () {
       x: window.pageXOffset,
       y: window.pageYOffset
     };
+  }
+}
+
+function handlePopState (e) {
+  saveScrollPosition();
+  if (e.state && e.state.key) {
+    setStateKey(e.state.key);
   }
 }
 
@@ -5894,7 +5906,7 @@ var supportsPushState =
       return false
     }
 
-    return window.history && 'pushState' in window.history
+    return window.history && typeof window.history.pushState === 'function'
   })();
 
 function pushState (url, replace) {
@@ -6048,32 +6060,72 @@ function once (fn) {
   }
 }
 
-var NavigationDuplicated = /*@__PURE__*/(function (Error) {
-  function NavigationDuplicated (normalizedLocation) {
-    Error.call(this);
-    this.name = this._name = 'NavigationDuplicated';
-    // passing the message to super() doesn't seem to work in the transpiled version
-    this.message = "Navigating to current location (\"" + (normalizedLocation.fullPath) + "\") is not allowed";
-    // add a stack property so services like Sentry can correctly display it
-    Object.defineProperty(this, 'stack', {
-      value: new Error().stack,
-      writable: true,
-      configurable: true
-    });
-    // we could also have used
-    // Error.captureStackTrace(this, this.constructor)
-    // but it only exists on node and chrome
-  }
+var NavigationFailureType = {
+  redirected: 1,
+  aborted: 2,
+  cancelled: 3,
+  duplicated: 4
+};
 
-  if ( Error ) NavigationDuplicated.__proto__ = Error;
-  NavigationDuplicated.prototype = Object.create( Error && Error.prototype );
-  NavigationDuplicated.prototype.constructor = NavigationDuplicated;
+function createNavigationRedirectedError (from, to) {
+  return createRouterError(
+    from,
+    to,
+    NavigationFailureType.redirected,
+    ("Redirected when going from \"" + (from.fullPath) + "\" to \"" + (stringifyRoute(
+      to
+    )) + "\" via a navigation guard.")
+  )
+}
 
-  return NavigationDuplicated;
-}(Error));
+function createNavigationDuplicatedError (from, to) {
+  return createRouterError(
+    from,
+    to,
+    NavigationFailureType.duplicated,
+    ("Avoided redundant navigation to current location: \"" + (from.fullPath) + "\".")
+  )
+}
 
-// support IE9
-NavigationDuplicated._name = 'NavigationDuplicated';
+function createNavigationCancelledError (from, to) {
+  return createRouterError(
+    from,
+    to,
+    NavigationFailureType.cancelled,
+    ("Navigation cancelled from \"" + (from.fullPath) + "\" to \"" + (to.fullPath) + "\" with a new navigation.")
+  )
+}
+
+function createNavigationAbortedError (from, to) {
+  return createRouterError(
+    from,
+    to,
+    NavigationFailureType.aborted,
+    ("Navigation aborted from \"" + (from.fullPath) + "\" to \"" + (to.fullPath) + "\" via a navigation guard.")
+  )
+}
+
+function createRouterError (from, to, type, message) {
+  var error = new Error(message);
+  error._isRouter = true;
+  error.from = from;
+  error.to = to;
+  error.type = type;
+
+  return error
+}
+
+var propertiesToLog = ['params', 'query', 'hash'];
+
+function stringifyRoute (to) {
+  if (typeof to === 'string') { return to }
+  if ('path' in to) { return to.path }
+  var location = {};
+  propertiesToLog.forEach(function (key) {
+    if (key in to) { location[key] = to[key]; }
+  });
+  return JSON.stringify(location, null, 2)
+}
 
 /*  */
 
@@ -6087,6 +6139,7 @@ var History = function History (router, base) {
   this.readyCbs = [];
   this.readyErrorCbs = [];
   this.errorCbs = [];
+  this.listeners = [];
 };
 
 History.prototype.listen = function listen (cb) {
@@ -6119,9 +6172,13 @@ History.prototype.transitionTo = function transitionTo (
   this.confirmTransition(
     route,
     function () {
+      var prev = this$1.current;
       this$1.updateRoute(route);
       onComplete && onComplete(route);
       this$1.ensureURL();
+      this$1.router.afterHooks.forEach(function (hook) {
+        hook && hook(route, prev);
+      });
 
       // fire ready cbs once
       if (!this$1.ready) {
@@ -6137,9 +6194,17 @@ History.prototype.transitionTo = function transitionTo (
       }
       if (err && !this$1.ready) {
         this$1.ready = true;
-        this$1.readyErrorCbs.forEach(function (cb) {
-          cb(err);
-        });
+        // Initial redirection should still trigger the onReady onSuccess
+        // https://github.com/vuejs/vue-router/issues/3225
+        if (!isRouterError(err, NavigationFailureType.redirected)) {
+          this$1.readyErrorCbs.forEach(function (cb) {
+            cb(err);
+          });
+        } else {
+          this$1.readyCbs.forEach(function (cb) {
+            cb(route);
+          });
+        }
       }
     }
   );
@@ -6150,11 +6215,10 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
 
   var current = this.current;
   var abort = function (err) {
-    // after merging https://github.com/vuejs/vue-router/pull/2771 we
-    // When the user navigates through history through back/forward buttons
-    // we do not want to throw the error. We only throw it if directly calling
-    // push/replace. That's why it's not included in isError
-    if (!isExtendedError(NavigationDuplicated, err) && isError(err)) {
+    // changed after adding errors with
+    // https://github.com/vuejs/vue-router/pull/3047 before that change,
+    // redirect and aborted navigation would produce an err == null
+    if (!isRouterError(err) && isError(err)) {
       if (this$1.errorCbs.length) {
         this$1.errorCbs.forEach(function (cb) {
           cb(err);
@@ -6166,13 +6230,16 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
     }
     onAbort && onAbort(err);
   };
+  var lastRouteIndex = route.matched.length - 1;
+  var lastCurrentIndex = current.matched.length - 1;
   if (
     isSameRoute(route, current) &&
     // in the case the route map has been dynamically appended to
-    route.matched.length === current.matched.length
+    lastRouteIndex === lastCurrentIndex &&
+    route.matched[lastRouteIndex] === current.matched[lastCurrentIndex]
   ) {
     this.ensureURL();
-    return abort(new NavigationDuplicated(route))
+    return abort(createNavigationDuplicatedError(current, route))
   }
 
   var ref = resolveQueue(
@@ -6199,12 +6266,15 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
   this.pending = route;
   var iterator = function (hook, next) {
     if (this$1.pending !== route) {
-      return abort()
+      return abort(createNavigationCancelledError(current, route))
     }
     try {
       hook(route, current, function (to) {
-        if (to === false || isError(to)) {
+        if (to === false) {
           // next(false) -> abort navigation, ensure current URL
+          this$1.ensureURL(true);
+          abort(createNavigationAbortedError(current, route));
+        } else if (isError(to)) {
           this$1.ensureURL(true);
           abort(to);
         } else if (
@@ -6213,7 +6283,7 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
             (typeof to.path === 'string' || typeof to.name === 'string'))
         ) {
           // next('/') or next({ path: '/' }) -> redirect
-          abort();
+          abort(createNavigationRedirectedError(current, route));
           if (typeof to === 'object' && to.replace) {
             this$1.replace(to);
           } else {
@@ -6238,7 +6308,7 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
     var queue = enterGuards.concat(this$1.router.resolveHooks);
     runQueue(queue, iterator, function () {
       if (this$1.pending !== route) {
-        return abort()
+        return abort(createNavigationCancelledError(current, route))
       }
       this$1.pending = null;
       onComplete(route);
@@ -6254,12 +6324,19 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
 };
 
 History.prototype.updateRoute = function updateRoute (route) {
-  var prev = this.current;
   this.current = route;
   this.cb && this.cb(route);
-  this.router.afterHooks.forEach(function (hook) {
-    hook && hook(route, prev);
+};
+
+History.prototype.setupListeners = function setupListeners () {
+  // Default implementation is empty
+};
+
+History.prototype.teardownListeners = function teardownListeners () {
+  this.listeners.forEach(function (cleanupListener) {
+    cleanupListener();
   });
+  this.listeners = [];
 };
 
 function normalizeBase (base) {
@@ -6404,25 +6481,37 @@ function poll (
 
 var HTML5History = /*@__PURE__*/(function (History) {
   function HTML5History (router, base) {
-    var this$1 = this;
-
     History.call(this, router, base);
 
+    this._startLocation = getLocation(this.base);
+  }
+
+  if ( History ) HTML5History.__proto__ = History;
+  HTML5History.prototype = Object.create( History && History.prototype );
+  HTML5History.prototype.constructor = HTML5History;
+
+  HTML5History.prototype.setupListeners = function setupListeners () {
+    var this$1 = this;
+
+    if (this.listeners.length > 0) {
+      return
+    }
+
+    var router = this.router;
     var expectScroll = router.options.scrollBehavior;
     var supportsScroll = supportsPushState && expectScroll;
 
     if (supportsScroll) {
-      setupScroll();
+      this.listeners.push(setupScroll());
     }
 
-    var initLocation = getLocation(this.base);
-    window.addEventListener('popstate', function (e) {
+    var handleRoutingEvent = function () {
       var current = this$1.current;
 
       // Avoiding first `popstate` event dispatched in some browsers but first
       // history route not updated since async guard at the same time.
       var location = getLocation(this$1.base);
-      if (this$1.current === START && location === initLocation) {
+      if (this$1.current === START && location === this$1._startLocation) {
         return
       }
 
@@ -6431,12 +6520,12 @@ var HTML5History = /*@__PURE__*/(function (History) {
           handleScroll(router, route, current, true);
         }
       });
+    };
+    window.addEventListener('popstate', handleRoutingEvent);
+    this.listeners.push(function () {
+      window.removeEventListener('popstate', handleRoutingEvent);
     });
-  }
-
-  if ( History ) HTML5History.__proto__ = History;
-  HTML5History.prototype = Object.create( History && History.prototype );
-  HTML5History.prototype.constructor = HTML5History;
+  };
 
   HTML5History.prototype.go = function go (n) {
     window.history.go(n);
@@ -6482,7 +6571,7 @@ var HTML5History = /*@__PURE__*/(function (History) {
 
 function getLocation (base) {
   var path = decodeURI(window.location.pathname);
-  if (base && path.indexOf(base) === 0) {
+  if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
     path = path.slice(base.length);
   }
   return (path || '/') + window.location.search + window.location.hash
@@ -6509,31 +6598,40 @@ var HashHistory = /*@__PURE__*/(function (History) {
   HashHistory.prototype.setupListeners = function setupListeners () {
     var this$1 = this;
 
+    if (this.listeners.length > 0) {
+      return
+    }
+
     var router = this.router;
     var expectScroll = router.options.scrollBehavior;
     var supportsScroll = supportsPushState && expectScroll;
 
     if (supportsScroll) {
-      setupScroll();
+      this.listeners.push(setupScroll());
     }
 
-    window.addEventListener(
-      supportsPushState ? 'popstate' : 'hashchange',
-      function () {
-        var current = this$1.current;
-        if (!ensureSlash()) {
-          return
-        }
-        this$1.transitionTo(getHash(), function (route) {
-          if (supportsScroll) {
-            handleScroll(this$1.router, route, current, true);
-          }
-          if (!supportsPushState) {
-            replaceHash(route.fullPath);
-          }
-        });
+    var handleRoutingEvent = function () {
+      var current = this$1.current;
+      if (!ensureSlash()) {
+        return
       }
+      this$1.transitionTo(getHash(), function (route) {
+        if (supportsScroll) {
+          handleScroll(this$1.router, route, current, true);
+        }
+        if (!supportsPushState) {
+          replaceHash(route.fullPath);
+        }
+      });
+    };
+    var eventType = supportsPushState ? 'popstate' : 'hashchange';
+    window.addEventListener(
+      eventType,
+      handleRoutingEvent
     );
+    this.listeners.push(function () {
+      window.removeEventListener(eventType, handleRoutingEvent);
+    });
   };
 
   HashHistory.prototype.push = function push (location, onComplete, onAbort) {
@@ -6706,7 +6804,7 @@ var AbstractHistory = /*@__PURE__*/(function (History) {
         this$1.updateRoute(route);
       },
       function (err) {
-        if (isExtendedError(NavigationDuplicated, err)) {
+        if (isRouterError(err, NavigationFailureType.duplicated)) {
           this$1.index = targetIndex;
         }
       }
@@ -6801,6 +6899,12 @@ VueRouter.prototype.init = function init (app /* Vue component instance */) {
     // ensure we still have a main app or null if no apps
     // we do not release the router so it can be reused
     if (this$1.app === app) { this$1.app = this$1.apps[0] || null; }
+
+    if (!this$1.app) {
+      // clean up event listeners
+      // https://github.com/vuejs/vue-router/issues/2341
+      this$1.history.teardownListeners();
+    }
   });
 
   // main app previously initialized
@@ -6813,17 +6917,11 @@ VueRouter.prototype.init = function init (app /* Vue component instance */) {
 
   var history = this.history;
 
-  if (history instanceof HTML5History) {
-    history.transitionTo(history.getCurrentLocation());
-  } else if (history instanceof HashHistory) {
-    var setupHashListener = function () {
+  if (history instanceof HTML5History || history instanceof HashHistory) {
+    var setupListeners = function () {
       history.setupListeners();
     };
-    history.transitionTo(
-      history.getCurrentLocation(),
-      setupHashListener,
-      setupHashListener
-    );
+    history.transitionTo(history.getCurrentLocation(), setupListeners, setupListeners);
   }
 
   history.listen(function (route) {
@@ -6956,7 +7054,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.1.6';
+VueRouter.version = '3.3.4';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -20196,7 +20294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/router */ "./resources/vue/router/index.js");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/App */ "./resources/vue/App.vue");
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/App.vue */ "./resources/vue/App.vue");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/store */ "./resources/vue/store/index.js");
 
 
@@ -20207,7 +20305,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
   store: _store__WEBPACK_IMPORTED_MODULE_3__["default"],
   render: function render(h) {
-    return h(_App__WEBPACK_IMPORTED_MODULE_2__["default"]);
+    return h(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (app);
@@ -20232,7 +20330,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PublicLayout = function PublicLayout() {
-  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
+  return Promise.all(/*! import() | PublicLayout */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("vendors~Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("PublicLayout")]).then(__webpack_require__.bind(null, /*! @/layouts/PublicLayout */ "./resources/vue/layouts/PublicLayout.vue"));
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -20257,7 +20355,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var Home = function Home() {
-  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Home"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
+  return Promise.all(/*! import() | Home */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("vendors~Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("vendors~Home"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("Home")]).then(__webpack_require__.bind(null, /*! @/pages/Home */ "./resources/vue/pages/Home.vue"));
 };
 
 var About = function About() {
@@ -20265,19 +20363,27 @@ var About = function About() {
 };
 
 var Catalog = function Catalog() {
-  return Promise.all(/*! import() | Catalog */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog")]).then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
+  return Promise.all(/*! import() | Catalog */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("vendors~Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("Catalog")]).then(__webpack_require__.bind(null, /*! @/pages/Catalog */ "./resources/vue/pages/Catalog.vue"));
 };
 
-var News = function News() {
-  return __webpack_require__.e(/*! import() | News */ "News").then(__webpack_require__.bind(null, /*! @/pages/News */ "./resources/vue/pages/News.vue"));
+var AllNews = function AllNews() {
+  return Promise.all(/*! import() | AllNews */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("AllNews")]).then(__webpack_require__.bind(null, /*! @/pages/AllNews */ "./resources/vue/pages/AllNews.vue"));
 };
 
 var Article = function Article() {
-  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article~Catalog~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
+  return Promise.all(/*! import() | Article */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("vendors~Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("Article")]).then(__webpack_require__.bind(null, /*! @/pages/Article */ "./resources/vue/pages/Article.vue"));
 };
 
 var NotFound = function NotFound() {
   return __webpack_require__.e(/*! import() | 404 */ "404").then(__webpack_require__.bind(null, /*! @/pages/404 */ "./resources/vue/pages/404.vue"));
+};
+
+var News = function News() {
+  return Promise.all(/*! import() | News */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("News")]).then(__webpack_require__.bind(null, /*! @/pages/News */ "./resources/vue/pages/News.vue"));
+};
+
+var Basket = function Basket() {
+  return Promise.all(/*! import() | Basket */[__webpack_require__.e("vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("vendors~Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("AllNews~Article~Basket~Catalog~Home~News~PublicLayout"), __webpack_require__.e("Article~Basket~Catalog~Home~PublicLayout"), __webpack_require__.e("Basket")]).then(__webpack_require__.bind(null, /*! @/pages/Basket */ "./resources/vue/pages/Basket.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -20297,9 +20403,17 @@ var NotFound = function NotFound() {
   name: "catalog",
   component: Catalog
 }, {
-  path: "news",
+  path: "allNews",
+  name: "allNews",
+  component: AllNews
+}, {
+  path: "/news/:newsId",
   name: "news",
   component: News
+}, {
+  path: "/basket",
+  name: "basket",
+  component: Basket
 }, {
   path: "*",
   name: "404",
@@ -20325,7 +20439,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/products */ "./resources/vue/store/modules/products/index.js");
 /* harmony import */ var _modules_news__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/news */ "./resources/vue/store/modules/news/index.js");
 /* harmony import */ var _modules_brands__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/brands */ "./resources/vue/store/modules/brands/index.js");
+/* harmony import */ var _modules_baskets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/baskets */ "./resources/vue/store/modules/baskets/index.js");
  // axios.defaults.headers.common['Content-Type'] = 'application/json'
+
 
 
 
@@ -20337,9 +20453,264 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__
   modules: {
     products: _modules_products__WEBPACK_IMPORTED_MODULE_3__["default"],
     news: _modules_news__WEBPACK_IMPORTED_MODULE_4__["default"],
-    brands: _modules_brands__WEBPACK_IMPORTED_MODULE_5__["default"]
+    brands: _modules_brands__WEBPACK_IMPORTED_MODULE_5__["default"],
+    baskets: _modules_baskets__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/baskets/actions.js":
+/*!********************************************************!*\
+  !*** ./resources/vue/store/modules/baskets/actions.js ***!
+  \********************************************************/
+/*! exports provided: addProduct, changeSizeProduct, changeQuantityProduct */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProduct", function() { return addProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeSizeProduct", function() { return changeSizeProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeQuantityProduct", function() { return changeQuantityProduct; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var addProduct = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref, payload) {
+    var commit, productId, quantity, size, color, orderWithId;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            commit = _ref.commit;
+            productId = payload.productId, quantity = payload.quantity, size = payload.size, color = payload.color;
+
+            if (productId && quantity && size && color) {
+              _context.next = 6;
+              break;
+            }
+
+            console.error('missing some information to add a product in the basket');
+            alert('missing some information to add a product in the basket');
+            return _context.abrupt("return");
+
+          case 6:
+            orderWithId = _objectSpread(_objectSpread({}, payload), {}, {
+              id: productId + color + size
+            });
+            commit('addProduct', orderWithId);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function addProduct(_x, _x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var changeSizeProduct = function changeSizeProduct(_ref3, payload) {
+  var commit = _ref3.commit;
+  var orderId = payload.orderId,
+      size = payload.size;
+
+  if (!(size && orderId)) {
+    console.error('missing some information to add a product in the basket');
+    alert('missing some information to add a product in the basket');
+    return;
+  }
+
+  commit('changeSizeProduct', payload);
+};
+
+var changeQuantityProduct = function changeQuantityProduct(_ref4, payload) {
+  var commit = _ref4.commit;
+  var orderId = payload.orderId,
+      quantity = payload.quantity;
+
+  if (!(orderId && quantity)) {
+    console.error('missing some information to add a product in the basket');
+    alert('missing some information to add a product in the basket');
+    return;
+  }
+
+  commit('changeQuantityProduct', payload);
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/baskets/getters.js":
+/*!********************************************************!*\
+  !*** ./resources/vue/store/modules/baskets/getters.js ***!
+  \********************************************************/
+/*! exports provided: basket */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "basket", function() { return basket; });
+var basket = function basket(state) {
+  return state.basket;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/baskets/index.js":
+/*!******************************************************!*\
+  !*** ./resources/vue/store/modules/baskets/index.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state */ "./resources/vue/store/modules/baskets/state.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/vue/store/modules/baskets/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getters */ "./resources/vue/store/modules/baskets/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mutations */ "./resources/vue/store/modules/baskets/mutations.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: _state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  getters: _getters__WEBPACK_IMPORTED_MODULE_2__,
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_3__,
+  actions: _actions__WEBPACK_IMPORTED_MODULE_1__
+});
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/baskets/mutations.js":
+/*!**********************************************************!*\
+  !*** ./resources/vue/store/modules/baskets/mutations.js ***!
+  \**********************************************************/
+/*! exports provided: addProduct, changeSizeProduct, changeQuantityProduct */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProduct", function() { return addProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeSizeProduct", function() { return changeSizeProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeQuantityProduct", function() { return changeQuantityProduct; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var addProduct = function addProduct(state, payload) {
+  var isSame = false;
+  var data = state.basket.length > 0 ? state.basket.map(function (order) {
+    var payloadQuantity = payload.quantity,
+        content = _objectWithoutProperties(payload, ["quantity"]);
+
+    var quantity = order.quantity,
+        stateContent = _objectWithoutProperties(order, ["quantity"]);
+
+    if (JSON.stringify(content) === JSON.stringify(stateContent)) {
+      isSame = true;
+      quantity += payloadQuantity;
+    }
+
+    return _objectSpread({
+      quantity: quantity
+    }, stateContent);
+  }) : [];
+
+  if (isSame) {
+    localStorage.setItem('basket', JSON.stringify(data));
+    state.basket = data;
+  } else {
+    var result = [].concat(_toConsumableArray(data), [_objectSpread({}, payload)]);
+    state.basket = result;
+    localStorage.setItem('basket', JSON.stringify(result));
+  }
+};
+
+var changeSizeProduct = function changeSizeProduct(state, payload) {
+  var size = payload.size,
+      orderId = payload.orderId;
+  var data = state.basket.map(function (orderState) {
+    if (orderState.id !== orderId) return orderState;
+    return _objectSpread(_objectSpread({}, orderState), {}, {
+      size: size
+    });
+  });
+  state.basket = data;
+  localStorage.setItem('basket', JSON.stringify(data));
+};
+
+var changeQuantityProduct = function changeQuantityProduct(state, payload) {
+  var quantity = payload.quantity,
+      orderId = payload.orderId;
+  var data = state.basket.map(function (orderState) {
+    if (orderState.id !== orderId) return orderState;
+    return _objectSpread(_objectSpread({}, orderState), {}, {
+      quantity: quantity
+    });
+  });
+  state.basket = data;
+  localStorage.setItem('basket', JSON.stringify(data));
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/vue/store/modules/baskets/state.js":
+/*!******************************************************!*\
+  !*** ./resources/vue/store/modules/baskets/state.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var storage = JSON.parse(localStorage.getItem('basket'));
+/* harmony default export */ __webpack_exports__["default"] = ({
+  basket: storage || []
+});
 
 /***/ }),
 
@@ -20555,50 +20926,52 @@ var getAllNews = /*#__PURE__*/function () {
 }();
 
 var getNews = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3, id) {
-    var commit, res;
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref3, _ref4) {
+    var commit, id, res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             commit = _ref3.commit;
-            _context2.prev = 1;
-            _context2.next = 4;
+            id = _ref4.id;
+            _context2.prev = 2;
+            _context2.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/news/".concat(id));
 
-          case 4:
+          case 5:
             res = _context2.sent;
+            console.log(res.data);
             commit('getNews', res.data.payload);
-            _context2.next = 11;
+            _context2.next = 13;
             break;
 
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](1);
+          case 10:
+            _context2.prev = 10;
+            _context2.t0 = _context2["catch"](2);
             console.error(_context2.t0);
 
-          case 11:
+          case 13:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[1, 8]]);
+    }, _callee2, null, [[2, 10]]);
   }));
 
   return function getNews(_x2, _x3) {
-    return _ref4.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 
 var getQuantityNews = /*#__PURE__*/function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref5, _ref6) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref6, _ref7) {
     var commit, quantity, res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            commit = _ref5.commit;
-            quantity = _ref6.quantity;
+            commit = _ref6.commit;
+            quantity = _ref7.quantity;
             _context3.prev = 2;
             _context3.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("api/news?quantity=".concat(quantity));
@@ -20623,7 +20996,7 @@ var getQuantityNews = /*#__PURE__*/function () {
   }));
 
   return function getQuantityNews(_x4, _x5) {
-    return _ref7.apply(this, arguments);
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -20693,6 +21066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllNews", function() { return getAllNews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNews", function() { return getNews; });
 var getNews = function getNews(state, news) {
+  console.log(news);
   state.news = news;
 };
 
@@ -20714,8 +21088,8 @@ var getAllNews = function getAllNews(state, AllNews) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  news: [],
-  allNews: {}
+  news: {},
+  allNews: []
 });
 
 /***/ }),
@@ -20724,7 +21098,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/vue/store/modules/products/actions.js ***!
   \*********************************************************/
-/*! exports provided: getProducts, getProduct, getRandomProducts, getRelatedBrandProduct */
+/*! exports provided: getProducts, getProduct, getRandomProducts, getRelatedBrandProduct, getProductsByIds */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20733,6 +21107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProduct", function() { return getProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandomProducts", function() { return getRandomProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRelatedBrandProduct", function() { return getRelatedBrandProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProductsByIds", function() { return getProductsByIds; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -20909,6 +21284,54 @@ var getRelatedBrandProduct = /*#__PURE__*/function () {
   };
 }();
 
+var getProductsByIds = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(_ref12, _ref13) {
+    var commit, productsIds, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            commit = _ref12.commit;
+            productsIds = _ref13.productsIds;
+            _context5.prev = 2;
+
+            if (productsIds && productsIds.length > 0) {
+              _context5.next = 5;
+              break;
+            }
+
+            throw "need a array of product id";
+
+          case 5:
+            _context5.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/products/getProductsByIds", {
+              productsIds: productsIds
+            });
+
+          case 7:
+            res = _context5.sent;
+            commit('getProducts', res.data.payload);
+            _context5.next = 14;
+            break;
+
+          case 11:
+            _context5.prev = 11;
+            _context5.t0 = _context5["catch"](2);
+            console.error(_context5.t0);
+
+          case 14:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, null, [[2, 11]]);
+  }));
+
+  return function getProductsByIds(_x8, _x9) {
+    return _ref14.apply(this, arguments);
+  };
+}();
+
 
 
 /***/ }),
@@ -21023,7 +21446,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/themir/Work/school/sneaker-x/resources/vue/app.js */"./resources/vue/app.js");
+module.exports = __webpack_require__(/*! /Users/samuelcloarec.97sams/Documents/perso/sneaker-x/resources/vue/app.js */"./resources/vue/app.js");
 
 
 /***/ })

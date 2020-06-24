@@ -1,4 +1,5 @@
 const getNews = (state, news) => {
+    console.log(news)
     state.news = news
 }
 

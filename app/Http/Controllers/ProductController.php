@@ -7,6 +7,7 @@ use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -22,6 +23,36 @@ class ProductController extends Controller
         return response()->json([
             'error' => $error,
         ], $statusCode);
+    }
+
+    /**
+     * Handle error
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getProductsByIds(Request $request)
+    {
+        $error = null;
+        $all = null;
+
+        if (!($request->input('productsIds')))
+            return $this->handleError("need array of products ids");
+
+        $productsId = $request->input('productsIds');
+
+        try {
+            $all = Product::whereIn('id', $productsId)
+                ->orderBy(DB::raw('FIELD(`id`, ' . implode(',', $productsId) . ')'))
+                ->get();
+        } catch (Exception $err) {
+            return $this->handleError($err);
+        }
+
+        return response()->json([
+            'error' => $error,
+            'payload' => $all,
+        ]);
     }
 
     /**

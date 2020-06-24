@@ -25,7 +25,6 @@ directory_path="resources/vue/components/$type_comp/$file_name"
 
 mkdir "$directory_path"
 
-
 echo "<template>
 
 </template>

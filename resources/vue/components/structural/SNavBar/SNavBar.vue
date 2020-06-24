@@ -19,7 +19,7 @@
                 </ULink>
             </li>
             <li class="link">
-                <ULink href="news">
+                <ULink href="allNews">
                     Actualité
                 </ULink>
             </li>
@@ -32,28 +32,28 @@
                 <USearch />
             </div>
             <div class="usefil_links_wrapper">
-                <ULink href="">
-                    <!-- global style class -->
-                    <img
-                        src="@/assets/pictures/logos/logo-basket.svg"
-                        alt="Access to the basket page"
-                        class="useful_links_logos" 
-                    />
-                </ULink>
+                <UBasketIcon :articleNumber="basket.length"/>
             </div>
         </div>
     </nav>
 </template>
 
 <script>
-import { ULink, UBurgerMenu, USearch } from "@/components/unit";
+import { ULink, UBurgerMenu, USearch, UBasketIcon } from "@/components/unit";
+import {mapGetters} from "vuex";
 
 export default {
     name: "SNavbar",
     components: {
         ULink,
         UBurgerMenu,
-        USearch
+        USearch,
+        UBasketIcon
+    },
+    computed: {
+        ...mapGetters({
+            basket: 'baskets/basket',
+        }),
     }
 };
 </script>

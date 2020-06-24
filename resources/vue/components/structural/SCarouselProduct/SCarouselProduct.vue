@@ -45,7 +45,7 @@ export default {
         Slide
     },
     onMount() {
-        console.log(this.productsText, this.productsPicture)
+        // console.log(this.productsText, this.productsPicture)
     }
 };
 </script>

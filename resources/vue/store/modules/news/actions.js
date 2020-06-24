@@ -11,9 +11,11 @@ const getAllNews = async ({commit}) => {
 
 }
 
-const getNews = async ({commit}, id) => {
+const getNews = async ({commit}, {id}) => {
     try {
         const res = await axios.get(`/api/news/${id}`)
+
+        console.log(res.data)
 
         commit('getNews', res.data.payload)
     } catch (e) {

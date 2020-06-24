@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
-class AddPublisedAtToNewsTableNew extends Migration
+class AddColorToOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,8 @@ class AddPublisedAtToNewsTableNew extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->dateTime('published_at')->default(Carbon::now());
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('color');
         });
     }
 
@@ -26,7 +25,7 @@ class AddPublisedAtToNewsTableNew extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
+        Schema::table('order', function (Blueprint $table) {
             //
         });
     }

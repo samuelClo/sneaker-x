@@ -1,0 +1,17 @@
+#wrapperNews {
+    width: 500px;
+    padding: 30px;
+    border: $color_light_grey 1px solid;
+    margin: 0 auto;
+    h1 {
+        margin-bottom: 50px;
+    }
+    #summary {
+        @include font_ARTICLE_SMALL;
+        opacity: 0.8;
+        margin-bottom: 20px;
+    }
+    #content {
+        @include font_ARTICLE_SMALL
+    }
+}

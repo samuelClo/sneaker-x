@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\News;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Exception;
@@ -38,7 +39,10 @@ class NewsController extends Controller
         if ($request->quantity) {
             try {
                 $all = News::orderBy('created_at', 'asc')
-                    ->where('publish_at', '<=', Carbon::now())
+                    ->where([
+                        ['published_at', '<=', Carbon::now()],
+                        ['is_published', 1]
+                    ])
                     ->take(5)
                     ->get();
             } catch (Exception $err) {
@@ -47,7 +51,7 @@ class NewsController extends Controller
         } else {
             try {
                 $all = News::orderBy('created_at', 'asc')
-                    ->where('publish_at', '<=', Carbon::now())
+                    ->where('published_at', '<=', Carbon::now())
                     ->get();
             } catch (Exception $err) {
                 return $this->handleError($err->errorInfo[2]);
@@ -107,7 +111,7 @@ class NewsController extends Controller
 
         return response()->json([
             'error' => $error,
-            'News' => $el,
+            'payload' => $el,
         ]);
     }
 

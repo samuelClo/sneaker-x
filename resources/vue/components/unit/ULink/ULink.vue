@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{ name: href, params }">
+    <router-link id="wrapper" :to="{ name: href, params }">
         <slot></slot>
     </router-link>
 </template>

@@ -1,9 +1,12 @@
 const Home = () => import(/* webpackChunkName: "Home" */ "@/pages/Home");
 const About = () => import(/* webpackChunkName: "About" */ "@/pages/About");
 const Catalog = () => import(/* webpackChunkName: "Catalog" */ "@/pages/Catalog");
-const News = () => import(/* webpackChunkName: "News" */ "@/pages/News");
+const AllNews = () => import(/* webpackChunkName: "AllNews" */ "@/pages/AllNews");
 const Article = () => import(/* webpackChunkName: "Article" */ "@/pages/Article");
 const NotFound = () => import(/* webpackChunkName: "404" */ "@/pages/404");
+const News = () => import(/* webpackChunkName: "News" */ "@/pages/News");
+const Basket = () => import(/* webpackChunkName: "Basket" */ "@/pages/Basket");
+
 
 export default [
     {
@@ -27,9 +30,19 @@ export default [
         component: Catalog
     },
     {
-        path: "news",
+        path: "allNews",
+        name: "allNews",
+        component: AllNews
+    },
+    {
+        path: "/news/:newsId",
         name: "news",
-        component: News
+        component: News,
+    },
+    {
+        path: "/basket",
+        name: "basket",
+        component: Basket,
     },
     {
         path: "*",

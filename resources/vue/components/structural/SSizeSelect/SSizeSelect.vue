@@ -11,35 +11,39 @@
 </template>
 
 <script>
-import { USizeSelect } from "@/components/unit";
+    import {USizeSelect} from "@/components/unit";
 
-export default {
-    data: function() {
-        return {
-            activeItem: null,
-            sizes: [
-                39,40,41,42,44,44.5
-            ]
-        };
-    },
-    methods: {
-        handleClick(size) {
-            this.activeItem = size;
-            this.$emit('onClick', size)
+    export default {
+        data: function () {
+            return {
+                activeItem: this.default || null,
+            };
         },
-    },
-    // props: {
-    //     sizes: {
-    //         type: Array,
-    //         required: true
-    //     }
-    // },
-    components: {
-        USizeSelect
-    }
-};
+        methods: {
+            handleClick(size) {
+                this.activeItem = size;
+                this.$emit('onClick', size)
+            },
+        },
+        props: {
+            sizes: {
+                type: Array,
+                required: false,
+                default: function () {
+                    return [39, 40, 41, 42, 44, 44.5]
+                }
+            },
+            default: {
+                type: Number,
+                required: false
+            }
+        },
+        components: {
+            USizeSelect
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
-@import "SSizeSelect";
+    @import "SSizeSelect";
 </style>

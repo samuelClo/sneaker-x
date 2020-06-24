@@ -34,10 +34,8 @@
                 this.isVisible = true
             },
             handleBrandClick(brandId) {
-                console.log('gegeg')
                 this.isVisible = false
                 this.$emit("onBrandClick", brandId)
-
             },
             handleAllProductClick(e) {
                 this.$emit('onAllProductClick')

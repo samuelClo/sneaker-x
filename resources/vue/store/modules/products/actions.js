@@ -8,7 +8,6 @@ const getProducts = async ({commit}) => {
     } catch (e) {
         console.error(e)
     }
-
 }
 
 const getProduct = async ({commit}, {id}) => {
@@ -53,9 +52,23 @@ const getRelatedBrandProduct = async ({commit}, {id}) => {
     commit('getRelatedBrandProduct', id)
 }
 
+const getProductsByIds = async ({commit}, {productsIds}) => {
+    try {
+        if (!(productsIds && productsIds.length > 0))
+            throw "need a array of product id"
+
+        const res = await axios.post(`/api/products/getProductsByIds`, {productsIds})
+
+        commit('getProducts', res.data.payload)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     getProducts,
     getProduct,
     getRandomProducts,
-    getRelatedBrandProduct
+    getRelatedBrandProduct,
+    getProductsByIds
 }
