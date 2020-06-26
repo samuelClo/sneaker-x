@@ -32,7 +32,7 @@
                 <USearch />
             </div>
             <div class="usefil_links_wrapper">
-                <UBasketIcon :articleNumber="basket.length"/>
+                <UBasketIcon :articleNumber="basket.length ? basket.length : 0"/>
             </div>
         </div>
     </nav>

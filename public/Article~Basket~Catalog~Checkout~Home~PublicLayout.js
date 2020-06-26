@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["Article~Basket~Catalog~Home~PublicLayout"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["Article~Basket~Catalog~Checkout~Home~PublicLayout"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/structural/SCarouselProduct/SCarouselProduct.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************!*\
@@ -804,7 +804,13 @@ var render = function() {
         _c(
           "div",
           { staticClass: "usefil_links_wrapper" },
-          [_c("UBasketIcon", { attrs: { articleNumber: _vm.basket.length } })],
+          [
+            _c("UBasketIcon", {
+              attrs: {
+                articleNumber: _vm.basket.length ? _vm.basket.length : 0
+              }
+            })
+          ],
           1
         )
       ])

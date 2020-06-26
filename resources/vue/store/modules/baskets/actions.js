@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const addProduct = async ({commit}, payload) => {
     const {productId, quantity, size, color} = payload
 
@@ -16,7 +14,7 @@ const addProduct = async ({commit}, payload) => {
     commit('addProduct', orderWithId)
 }
 
-const changeSizeProduct = ({commit}, payload) => {
+const changeOrderSize = ({commit}, payload) => {
     const {orderId, size} = payload
 
     if (!(size && orderId)) {
@@ -25,10 +23,10 @@ const changeSizeProduct = ({commit}, payload) => {
         return
     }
 
-    commit('changeSizeProduct', payload)
+    commit('changeOrderSize', payload)
 }
 
-const changeQuantityProduct = ({commit}, payload) => {
+const changeOrderQuantity = ({commit}, payload) => {
     const {orderId, quantity} = payload
 
     if (!(orderId && quantity)) {
@@ -37,11 +35,21 @@ const changeQuantityProduct = ({commit}, payload) => {
         return
     }
 
-    commit('changeQuantityProduct', payload)
+    commit('changeOrderQuantity', payload)
+}
+
+const deleteProduct = ({commit}, payload) => {
+    commit('deleteProduct', payload)
+}
+
+const setBasketTotalPrice = ({commit}, payload) => {
+    commit('setBasketTotalPrice', payload)
 }
 
 export {
     addProduct,
-    changeSizeProduct,
-    changeQuantityProduct
+    changeOrderSize,
+    changeOrderQuantity,
+    deleteProduct,
+    setBasketTotalPrice,
 }

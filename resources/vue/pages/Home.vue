@@ -25,32 +25,14 @@
 </template>
 
 <script>
-    import {arrivage, dixProduitsAleatoire, cinqNewsLast} from "@/fakedata/fake.data";
-
     import {SCarouselProduct} from "@/components/structural";
     import {UProductCard, UNewsCard} from "@/components/unit";
 
     import {mapGetters} from 'vuex'
-    import moment from 'moment';
 
-    console.log(moment(' 2020-06-20T19:55:40.000000Z€').format('FR-fr'))
 
     export default {
-        data() {
-            return {
-                // arrivage,
-                // arrivagePicture: [],
-                // arrivageText: [],
-                // dixProduitsAleatoire,
-                // cinqNewsLast
-            }
-        },
         mounted() {
-            // this.arrivage.forEach(el => {
-            //     this.arrivagePicture.push(el.image)
-            //     this.arrivageText.push(el.name)
-            // })
-
             this.$store.dispatch('products/getRandomProducts', {
                 value: 10,
             })

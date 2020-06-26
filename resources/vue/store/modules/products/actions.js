@@ -54,7 +54,7 @@ const getRelatedBrandProduct = async ({commit}, {id}) => {
 
 const getProductsByIds = async ({commit}, {productsIds}) => {
     try {
-        if (!(productsIds && productsIds.length > 0))
+        if (!productsIds || productsIds.length === 0)
             throw "need a array of product id"
 
         const res = await axios.post(`/api/products/getProductsByIds`, {productsIds})

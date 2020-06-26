@@ -6,6 +6,7 @@ const Article = () => import(/* webpackChunkName: "Article" */ "@/pages/Article"
 const NotFound = () => import(/* webpackChunkName: "404" */ "@/pages/404");
 const News = () => import(/* webpackChunkName: "News" */ "@/pages/News");
 const Basket = () => import(/* webpackChunkName: "Basket" */ "@/pages/Basket");
+const Checkout = () => import(/* webpackChunkName: "Checkout" */ "@/pages/Checkout");
 
 
 export default [
@@ -43,6 +44,11 @@ export default [
         path: "/basket",
         name: "basket",
         component: Basket,
+    },
+    {
+        path: "/checkout",
+        name: "checkout",
+        component: Checkout,
     },
     {
         path: "*",

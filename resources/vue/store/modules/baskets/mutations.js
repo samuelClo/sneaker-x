@@ -24,7 +24,7 @@ const addProduct = (state, payload) => {
     }
 }
 
-const changeSizeProduct = (state, payload) => {
+const changeOrderSize = (state, payload) => {
     const {size, orderId} = payload
 
     const data = state.basket.map(orderState => {
@@ -41,7 +41,7 @@ const changeSizeProduct = (state, payload) => {
     localStorage.setItem('basket', JSON.stringify(data));
 }
 
-const changeQuantityProduct = (state, payload) => {
+const changeOrderQuantity = (state, payload) => {
     const {quantity, orderId} = payload
 
     const data = state.basket.map(orderState => {
@@ -58,8 +58,24 @@ const changeQuantityProduct = (state, payload) => {
     localStorage.setItem('basket', JSON.stringify(data));
 }
 
+const deleteProduct = (state, payload) => {
+    const {orderId} = payload
+    const index = state.basket.findIndex(order => order.id === orderId)
+
+    state.basket.splice(index, 1);
+
+    localStorage.removeItem('basket');
+    localStorage.setItem('basket', JSON.stringify(state.basket));
+}
+
+const setBasketTotalPrice = (state, payload) => {
+    state.basketTotalPrice = payload.basketTotalPrice
+}
+
 export {
     addProduct,
-    changeSizeProduct,
-    changeQuantityProduct
+    changeOrderSize,
+    changeOrderQuantity,
+    deleteProduct,
+    setBasketTotalPrice,
 }
