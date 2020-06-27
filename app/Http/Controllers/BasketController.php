@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Basket;
+use App\Mail\Mailtrap;
+use App\Order;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Mail;
 
 class BasketController extends Controller
 {
@@ -21,15 +24,15 @@ class BasketController extends Controller
 
         try {
             $all = Basket::orderBy('created_at', 'asc')->get();
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
 
-            return  response()->json([
+            return response()->json([
                 'error' => $error,
             ]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $all,
         ]);
@@ -47,17 +50,29 @@ class BasketController extends Controller
         $el = null;
         $requestRes = $request->all();
 
+        $user = $requestRes['user'];
+
+        Mail::to($user['email'])->send(new Mailtrap(
+            $user['name'],
+            isset($user['firstName']) ? $user['firstName'] : null,
+            isset($user['email']) ? $user['email'] : null,
+            isset($user['object']) ? $user['object'] : null,
+            isset($user['message']) ? $user['message'] : null
+        ));
+
+//        Mail::to($user['email'])->send(new Mailtrap($user, $truc));
+
         try {
             $el = Basket::create($requestRes);
-        } catch(Exception $err) {
-            $error = $err->errorInfo[2];
+        } catch (Exception $err) {
+            $error = $err;
 
-            return  response()->json([
+            return response()->json([
                 'error' => $error,
             ]);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -76,15 +91,15 @@ class BasketController extends Controller
 
         try {
             $el = Basket::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
+            return response()->json([
                 'error' => $error,
             ], 404);
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'Basket' => $el,
         ]);
@@ -105,21 +120,21 @@ class BasketController extends Controller
 
         try {
             $el = Basket::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
+            return response()->json([
                 'error' => $error,
             ], 404);
         }
 
         try {
             $el->update($requestRes);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
             'payload' => $el,
         ]);
@@ -138,21 +153,21 @@ class BasketController extends Controller
 
         try {
             $el = Basket::findOrFail($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = 'Unknown id';
 
-            return  response()->json([
+            return response()->json([
                 'error' => $error,
             ], 404);
         }
 
         try {
             $el->delete($id);
-        } catch(Exception $err) {
+        } catch (Exception $err) {
             $error = $err->errorInfo[2];
         }
 
-        return  response()->json([
+        return response()->json([
             'error' => $error,
         ]);
     }

@@ -74,7 +74,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#wrapperNews[data-v-6cea8e82] {\n  width: 500px;\n  padding: 30px;\n  border: #e8e8e8 1px solid;\n  margin: 0 auto;\n}\n#wrapperNews h1[data-v-6cea8e82] {\n  margin-bottom: 50px;\n}\n#wrapperNews #summary[data-v-6cea8e82] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  opacity: 0.8;\n  margin-bottom: 20px;\n}\n#wrapperNews #content[data-v-6cea8e82] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n}", ""]);
+exports.push([module.i, "#wrapperNews[data-v-6cea8e82] {\n  width: 500px;\n  padding: 30px;\n  border: #e8e8e8 1px solid;\n  margin: 0 auto;\n}\n#wrapperNews h1[data-v-6cea8e82] {\n  margin-bottom: 50px;\n}\n#wrapperNews #summary[data-v-6cea8e82] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  opacity: 0.8;\n  margin-bottom: 20px;\n}\n#wrapperNews #content[data-v-6cea8e82] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n}\n@media screen and (max-width: 600px) {\n#wrapperNews[data-v-6cea8e82] {\n    width: 90%;\n    padding: 10px;\n}\n}", ""]);
 
 // exports
 

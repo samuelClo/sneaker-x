@@ -11,12 +11,13 @@
                 :id="product.id"
             />
         </div>
+        <h1>Actualité</h1>
         <div id="newsGrid" class="grid">
             <UNewsCard
                 v-for="news in lastNews"
                 :key="news.id"
                 :title="news.title"
-                :date="news.updated_at ? news.updated_at : news.created_at"
+                :date="moment(news.published_at).format('YYYY-MM-DD')"
                 :summary="news.summary"
                 :id="news.id"
             />
@@ -28,10 +29,21 @@
     import {SCarouselProduct} from "@/components/structural";
     import {UProductCard, UNewsCard} from "@/components/unit";
 
+    import moment  from 'moment'
     import {mapGetters} from 'vuex'
+
+    const truc = '2020-06-23T08:50:21.000000Z€'
+
+
+    console.log(moment())
 
 
     export default {
+        data() {
+            return {
+                moment: moment
+            }
+        },
         mounted() {
             this.$store.dispatch('products/getRandomProducts', {
                 value: 10,

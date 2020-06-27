@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["Article~Basket~Catalog~Home~PublicLayout"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["Article~Basket~Catalog~Checkout~Confirm~Home~PublicLayout"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/structural/SCarouselProduct/SCarouselProduct.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************!*\
@@ -153,6 +153,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -379,7 +383,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#brandName[data-v-b3d78cf6] {\n  border-radius: 4px;\n  box-shadow: #389e70 0px 1px 3px, #389e70 0px 1px 2px;\n  padding: 10px 20px;\n  position: relative;\n  cursor: pointer;\n}\n#wrapper[data-v-b3d78cf6] {\n  display: flex;\n  padding: 10px 10%;\n  user-select: none;\n}\n.selectWrapper[data-v-b3d78cf6] {\n  display: none;\n  position: absolute;\n  z-index: 2;\n  padding: 15px 15px;\n  border: 1px solid #389e70;\n  left: 132px;\n  border-radius: 5px;\n  background-color: #ffffff;\n}\n.active[data-v-b3d78cf6] {\n  display: block;\n}\n.item[data-v-b3d78cf6] {\n  padding-bottom: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n}\n.item[data-v-b3d78cf6]:last-child {\n  padding-bottom: 0;\n}\n.item img[data-v-b3d78cf6] {\n  margin-right: 20px;\n}\n#all[data-v-b3d78cf6] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n}\n#all span[data-v-b3d78cf6] {\n  margin-bottom: 5px;\n  cursor: pointer;\n  color: #41b883;\n}", ""]);
+exports.push([module.i, "#brandName[data-v-b3d78cf6] {\n  border-radius: 4px;\n  box-shadow: #389e70 0px 1px 3px, #389e70 0px 1px 2px;\n  padding: 10px 20px;\n  position: relative;\n  cursor: pointer;\n}\n#wrapper[data-v-b3d78cf6] {\n  display: flex;\n  padding: 10px 10%;\n  user-select: none;\n}\n.selectWrapper[data-v-b3d78cf6] {\n  display: none;\n  position: absolute;\n  z-index: 2;\n  padding: 15px 15px;\n  border: 1px solid #389e70;\n  left: 132px;\n  border-radius: 5px;\n  background-color: #ffffff;\n}\n.active[data-v-b3d78cf6] {\n  display: block;\n}\n.item[data-v-b3d78cf6] {\n  padding-bottom: 10px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n}\n.item[data-v-b3d78cf6]:last-child {\n  padding-bottom: 0;\n}\n.item img[data-v-b3d78cf6] {\n  margin-right: 20px;\n}\n#all[data-v-b3d78cf6] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n}\n#all span[data-v-b3d78cf6] {\n  margin-bottom: 5px;\n  cursor: pointer;\n  color: #41b883;\n}\n@media screen and (max-width: 400px) {\n#productGrid[data-v-b3d78cf6] {\n    grid-gap: 10px;\n}\n#newsGrid[data-v-b3d78cf6] {\n    width: 100%;\n    padding: 0;\n    grid-gap: 10px;\n}\n.selectWrapper[data-v-b3d78cf6] {\n    right: -47px;\n    top: 58px;\n    left: unset;\n}\n}", ""]);
 
 // exports
 
@@ -398,7 +402,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "nav[data-v-8478c266] {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  padding: 5px 15px;\n  border-bottom: 1px solid #e8e8e8;\n}\n#links[data-v-8478c266] {\n  display: flex;\n  align-self: center;\n  justify-content: center;\n  font-family: \"Source Sans Pro\";\n  font-size: 16px;\n  color: #323333;\n  text-transform: uppercase;\n  font-weight: 700;\n}\n.link[data-v-8478c266] {\n  margin-left: 20px;\n}\n.link[data-v-8478c266]:first-child {\n  margin-left: unset;\n}\n#logo img[data-v-8478c266] {\n  max-height: 80px;\n  display: block;\n}\n#useful_links[data-v-8478c266] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n.usefil_links_wrapper[data-v-8478c266] {\n  margin-left: 17px;\n  cursor: pointer;\n}\n@media screen and (min-width: 1500px) {\n.usefil_links_wrapper[data-v-8478c266] {\n    margin-left: 40px;\n}\n}", ""]);
+exports.push([module.i, "nav[data-v-8478c266] {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  padding: 5px 15px;\n  border-bottom: 1px solid #e8e8e8;\n}\n#links[data-v-8478c266] {\n  display: flex;\n  align-self: center;\n  justify-content: center;\n  font-family: \"Source Sans Pro\";\n  font-size: 16px;\n  color: #323333;\n  text-transform: uppercase;\n  font-weight: 700;\n}\n.link[data-v-8478c266] {\n  margin-left: 20px;\n}\n.link[data-v-8478c266]:first-child {\n  margin-left: unset;\n}\n#logo img[data-v-8478c266] {\n  max-height: 80px;\n  display: block;\n}\n#useful_links[data-v-8478c266] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n}\n.usefil_links_wrapper[data-v-8478c266] {\n  margin-left: 17px;\n  cursor: pointer;\n}\n@media screen and (min-width: 1500px) {\n.usefil_links_wrapper[data-v-8478c266] {\n    margin-left: 40px;\n}\n}\n@media screen and (max-width: 630px) {\nnav[data-v-8478c266] {\n    display: flex;\n    flex-direction: column;\n    padding: 15px 15px;\n    align-items: center;\n    border-bottom: 1px solid #e8e8e8;\n    position: relative;\n}\n#links[data-v-8478c266] {\n    display: flex;\n    align-self: center;\n    justify-content: center;\n    font-family: \"Source Sans Pro\";\n    font-size: 16px;\n    color: #323333;\n    text-transform: uppercase;\n    font-weight: 700;\n    flex-direction: column;\n}\n.link[data-v-8478c266] {\n    margin-left: unset;\n}\n.link[data-v-8478c266]::after {\n    content: \"\";\n    background-color: #e8e8e8;\n    display: block;\n    width: 100%;\n    height: 1px;\n    margin: 10px 0;\n}\n.link[data-v-8478c266]:last-child::after {\n    height: 0;\n    margin: 0;\n}\n#logo img[data-v-8478c266] {\n    position: absolute;\n    top: 10px;\n    left: 10px;\n}\n#useful_links[data-v-8478c266] {\n    position: absolute;\n    top: 10px;\n    right: 10px;\n    flex-direction: column;\n}\n.usefil_links_wrapper[data-v-8478c266] {\n    margin-left: unset;\n    margin-bottom: 10px;\n}\n}", ""]);
 
 // exports
 
@@ -417,7 +421,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#wrapperProduct[data-v-535876c5] {\n  display: flex;\n  max-width: 800px;\n  align-items: center;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 10px;\n  margin-bottom: 20px;\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  padding: 10px;\n  position: relative;\n}\n#pictureProduct[data-v-535876c5] {\n  width: 400px;\n  object-fit: contain;\n  margin-right: 20px;\n}\n#wrapperAssets[data-v-535876c5] {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n}\n#price[data-v-535876c5] {\n  position: absolute;\n  right: 15px;\n  bottom: 10px;\n}\n#delete[data-v-535876c5] {\n  height: 15px;\n  width: 15px;\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  cursor: pointer;\n}\n@media all and (max-width: 940px) {\n#wrapperProduct[data-v-535876c5] {\n    flex-direction: column;\n    padding: 20px;\n}\n#price[data-v-535876c5] {\n    position: absolute;\n    right: 15px;\n    top: 15px;\n}\n#pictureProduct[data-v-535876c5] {\n    width: 300px;\n    margin-bottom: 20px;\n}\n}", ""]);
+exports.push([module.i, "#wrapperProduct[data-v-535876c5] {\n  display: flex;\n  max-width: 800px;\n  align-items: center;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 10px;\n  margin-bottom: 20px;\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  padding: 10px;\n  position: relative;\n}\n#pictureProduct[data-v-535876c5] {\n  width: 400px;\n  object-fit: contain;\n  margin-right: 20px;\n}\n#wrapperAssets[data-v-535876c5] {\n  display: flex;\n  flex-direction: column;\n  position: relative;\n}\n#price[data-v-535876c5] {\n  position: absolute;\n  right: 15px;\n  bottom: 10px;\n}\n#delete[data-v-535876c5] {\n  height: 15px;\n  width: 15px;\n  position: absolute;\n  top: 10px;\n  right: 15px;\n  cursor: pointer;\n}\n@media all and (max-width: 940px) {\n#wrapperProduct[data-v-535876c5] {\n    flex-direction: column;\n    padding: 20px;\n}\n#price[data-v-535876c5] {\n    position: absolute;\n    right: 15px;\n    top: 15px;\n}\n#pictureProduct[data-v-535876c5] {\n    width: 90%;\n    margin-bottom: 20px;\n    margin-right: unset;\n}\n}", ""]);
 
 // exports
 
@@ -750,8 +754,7 @@ var render = function() {
         _c("img", {
           attrs: {
             src: __webpack_require__(/*! @/assets/pictures/logos/logo-sneaker-x.png */ "./resources/vue/assets/pictures/logos/logo-sneaker-x.png"),
-            alt: "website logo",
-            id: "logo"
+            alt: "website logo"
           }
         })
       ]),
@@ -762,7 +765,7 @@ var render = function() {
           { staticClass: "link" },
           [
             _c("ULink", { attrs: { href: "home" } }, [
-              _vm._v("\n                Accueil\n            ")
+              _vm._v("\n                    Accueil\n                ")
             ])
           ],
           1
@@ -773,7 +776,7 @@ var render = function() {
           { staticClass: "link" },
           [
             _c("ULink", { attrs: { href: "catalog" } }, [
-              _vm._v("\n                Catalogue\n            ")
+              _vm._v("\n                    Catalogue\n                ")
             ])
           ],
           1
@@ -784,7 +787,18 @@ var render = function() {
           { staticClass: "link" },
           [
             _c("ULink", { attrs: { href: "allNews" } }, [
-              _vm._v("\n                Actualité\n            ")
+              _vm._v("\n                    Actualité\n                ")
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "link" },
+          [
+            _c("ULink", { attrs: { href: "contact" } }, [
+              _vm._v("\n                    Contact\n                ")
             ])
           ],
           1
@@ -792,13 +806,6 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { attrs: { id: "useful_links" } }, [
-        _c(
-          "div",
-          { staticClass: "usefil_links_wrapper" },
-          [_c("UBurgerMenu")],
-          1
-        ),
-        _vm._v(" "),
         _c("div", { staticClass: "usefil_links_wrapper" }, [_c("USearch")], 1),
         _vm._v(" "),
         _c(

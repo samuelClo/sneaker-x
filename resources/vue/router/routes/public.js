@@ -7,6 +7,8 @@ const NotFound = () => import(/* webpackChunkName: "404" */ "@/pages/404");
 const News = () => import(/* webpackChunkName: "News" */ "@/pages/News");
 const Basket = () => import(/* webpackChunkName: "Basket" */ "@/pages/Basket");
 const Checkout = () => import(/* webpackChunkName: "Checkout" */ "@/pages/Checkout");
+const Confirm = () => import(/* webpackChunkName: "Confirm" */ "@/pages/Confirm");
+const Contact = () => import(/* webpackChunkName: "Contact" */ "@/pages/Contact");
 
 
 export default [
@@ -49,6 +51,16 @@ export default [
         path: "/checkout",
         name: "checkout",
         component: Checkout,
+    },
+    {
+        path: "/confirm",
+        name: "confirm",
+        component: Confirm,
+    },
+    {
+        path: "/contact",
+        name: "contact",
+        component: Contact,
     },
     {
         path: "*",

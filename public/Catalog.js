@@ -89,7 +89,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#productGrid[data-v-278920dd] {\n  width: 80vw;\n  grid-gap: 30px;\n}", ""]);
+exports.push([module.i, "#productGrid[data-v-278920dd] {\n  width: 80vw;\n  grid-gap: 30px;\n}\n@media screen and (max-width: 1024px) {\n#productGrid[data-v-278920dd] {\n    width: 90vw;\n    padding: 0;\n}\n}\n@media screen and (max-width: 400px) {\n#productGrid[data-v-278920dd] {\n    grid-gap: 10px;\n}\n}", ""]);
 
 // exports
 

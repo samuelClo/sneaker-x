@@ -1,0 +1,61 @@
+#wrapper_confirm {
+    display: flex;
+    flex-direction: column;
+
+    width: 320px;
+    margin: 0 auto;
+}
+
+//   basket review
+.basket_review {
+    margin-top: 30px;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid $color_light_grey;
+    padding: 10px;
+    border-radius: 10px;
+    h1 {
+        text-decoration: underline;
+        margin-bottom: 20px;
+    }
+}
+
+.order_review_wrapper {
+    display: flex;
+    flex-direction: column;
+    &::after {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background-color:  $color_primary_default;
+        margin: 10px 0;
+    }
+    //&:last-child {
+    //    background-color: red;
+    //    &::after {
+    //        height: 0;
+    //        margin:  0;
+    //    }
+    //}
+}
+
+.order_review_product {
+    @include font_RE;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_review_product_value {
+    font-weight: bold;
+}
+
+.order_review_product_title {
+    @include font_ARTICLE_SMALL;
+    font-weight: bold;
+    font-size: 20px;
+}
+.total_price {
+    padding: 10px 0;
+    border-top: 1px solid $color_light_grey;
+    text-align: center;
+}

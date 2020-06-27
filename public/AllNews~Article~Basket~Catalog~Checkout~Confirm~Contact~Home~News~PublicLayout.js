@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["AllNews~Article~Basket~Catalog~Checkout~Home~News~PublicLayout"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/unit/UBasketIcon/UBasketIcon.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\
@@ -523,7 +523,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "#card[data-v-deb92a44] {\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  background-color: white;\n  border: 1px solid #e8e8e8;\n  min-height: 178px;\n}\n#title[data-v-deb92a44], #date[data-v-deb92a44], #summary[data-v-deb92a44] {\n  color: #0e1c14;\n  padding: 5px 16px;\n}\n#title[data-v-deb92a44] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  color: #0e1c14;\n  font-weight: 800;\n}\nimg[data-v-deb92a44] {\n  height: 200px;\n  width: 100%;\n  object-fit: contain;\n}\n#link[data-v-deb92a44] {\n  margin-left: auto;\n  color: #41b883;\n}", ""]);
+exports.push([module.i, "#card[data-v-deb92a44] {\n  display: flex;\n  flex-direction: column;\n  border-radius: 4px;\n  background-color: white;\n  border: 1px solid #e8e8e8;\n  min-height: 178px;\n}\n#title[data-v-deb92a44], #date[data-v-deb92a44], #summary[data-v-deb92a44] {\n  color: #0e1c14;\n  padding: 5px 16px;\n}\n#title[data-v-deb92a44] {\n  font-family: \"Montserrat\";\n  font-weight: 400;\n  color: #323333;\n  font-size: 16px;\n  line-height: 23px;\n  color: #0e1c14;\n  font-weight: 800;\n}\nimg[data-v-deb92a44] {\n  height: 200px;\n  width: 100%;\n  object-fit: contain;\n}\n#link[data-v-deb92a44] {\n  margin-left: auto;\n  margin-right: 5px;\n  color: #41b883;\n}", ""]);
 
 // exports
 

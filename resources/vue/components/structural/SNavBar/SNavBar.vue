@@ -4,7 +4,6 @@
             <img
                 src="@/assets/pictures/logos/logo-sneaker-x.png"
                 alt="website logo"
-                id="logo"
             />
         </ULink>
         <ul id="links">
@@ -23,11 +22,16 @@
                     Actualité
                 </ULink>
             </li>
+            <li class="link">
+                <ULink href="contact">
+                    Contact
+                </ULink>
+            </li>
         </ul>
         <div id="useful_links">
-            <div class="usefil_links_wrapper">
-                <UBurgerMenu />
-            </div>
+<!--            <div class="usefil_links_wrapper">-->
+<!--                <UBurgerMenu />-->
+<!--            </div>-->
             <div class="usefil_links_wrapper">
                 <USearch />
             </div>

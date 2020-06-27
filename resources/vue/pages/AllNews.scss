@@ -2,3 +2,10 @@
     width: 60vw;
     grid-gap: 15px;
 }
+
+@media screen and (max-width: 600px) {
+    #newsGrid {
+        width: 100%;
+        padding: 0;
+    }
+}

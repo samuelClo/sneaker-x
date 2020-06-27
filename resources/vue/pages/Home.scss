@@ -11,8 +11,21 @@
 @media screen and (max-width: 1024px) {
     #productGrid {
         width: 90vw;
+        padding: 0;
     }
     #newsGrid {
-    width: 70vw;
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #productGrid {
+        //width: 100%;
+        grid-gap: 10px;
+    }
+    #newsGrid {
+        width: 100%;
+        padding: 0;
+        grid-gap: 10px;
     }
 }

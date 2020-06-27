@@ -25,6 +25,10 @@ Route::prefix('products')->group(function () {
     Route::post('getProductsByIds', 'ProductController@getProductsByIds');
 });
 
+Route::prefix('basket')->group(function () {
+    Route::put('/', 'BasketController@store');
+});
+
 //Route::get('products/getTenRandom', 'ProductController@getTenRandomProducts');
 //Route::get('products/getTenRandom', function ()
 //{

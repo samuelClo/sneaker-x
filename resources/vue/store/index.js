@@ -9,6 +9,7 @@ import products from './modules/products'
 import news from './modules/news'
 import brands from './modules/brands'
 import baskets from './modules/baskets'
+import users from './modules/users'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
         products,
         news,
         brands,
-        baskets
+        baskets,
+        users
     }
 })

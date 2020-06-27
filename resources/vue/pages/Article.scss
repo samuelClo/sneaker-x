@@ -52,3 +52,28 @@ p {
         flex-direction: column;
     }
 }
+
+@media screen and (max-width: 800px) {
+    #product_page {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .grid {
+        width: 90vw !important;
+        padding: 0 !important;
+    }
+    #newsGrid {
+        width: 70vw !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .grid {
+        width: 100% !important;
+        padding: 0 !important;
+        grid-gap: 10px !important;
+    }
+}
+

@@ -15,3 +15,9 @@
         @include font_ARTICLE_SMALL
     }
 }
+@media screen and (max-width: 600px) {
+    #wrapperNews {
+        width: 90%;
+        padding: 10px;
+    }
+}

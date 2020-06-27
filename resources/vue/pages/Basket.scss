@@ -52,11 +52,14 @@ main {
 }
 
 @media all and (max-width: 940px) {
+    main{
+        width: 100%;
+    }
     #wrapper_small_screen {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        padding: 32px 32px 0;
-        grid-gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+        padding: 0;
+        grid-gap: 10px;
         position: relative;
         z-index: 1;
     }

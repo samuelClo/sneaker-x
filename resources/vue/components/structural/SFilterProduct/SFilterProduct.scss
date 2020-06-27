@@ -49,3 +49,21 @@
         color: $color_text_activ;
     }
 }
+
+@media screen and (max-width: 400px) {
+    #productGrid {
+        //width: 100%;
+        grid-gap: 10px;
+    }
+    #newsGrid {
+        width: 100%;
+        padding: 0;
+        grid-gap: 10px;
+    }
+    .selectWrapper {
+        right: -47px;
+        top: 58px;
+        left: unset;
+    }
+}
+

@@ -36,3 +36,9 @@
     font-size: 16px;
     line-height: 23px;
 }
+
+@mixin font_error {
+    font-family: 'Source Sans Pro';
+    font-size: 12px;
+    line-height: normal;
+}

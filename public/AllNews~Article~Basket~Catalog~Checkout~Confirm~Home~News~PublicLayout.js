@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["AllNews~Article~Basket~Catalog~Checkout~Home~News~PublicLayout"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["AllNews~Article~Basket~Catalog~Checkout~Confirm~Home~News~PublicLayout"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/vue/components/unit/UBasketIcon/UBasketIcon.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************!*\

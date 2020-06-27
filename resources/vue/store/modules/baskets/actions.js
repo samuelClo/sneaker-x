@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const addProduct = async ({commit}, payload) => {
     const {productId, quantity, size, color} = payload
 
@@ -46,10 +48,29 @@ const setBasketTotalPrice = ({commit}, payload) => {
     commit('setBasketTotalPrice', payload)
 }
 
+const sendBasket = async ({commit}, payload) => {
+    const {user, basket} = payload
+
+    try {
+        if (!user)
+            throw "Id is not correctely defined"
+
+        const res = await axios.put(`/api/basket`, {
+            user,
+            // basket
+        })
+
+        commit('getProduct', res.data.payload)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     addProduct,
     changeOrderSize,
     changeOrderQuantity,
     deleteProduct,
     setBasketTotalPrice,
+    sendBasket
 }

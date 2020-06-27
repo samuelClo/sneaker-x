@@ -61,3 +61,8 @@ button {
     z-index: 1;
 }
 
+.invalid-feedback {
+    color: $color_error_default;
+    @include font_error;
+}
+

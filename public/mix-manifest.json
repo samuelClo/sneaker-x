@@ -14,5 +14,21 @@
     "/PublicLayout.js": "/PublicLayout.js",
     "/vendors~AllNews~Article~Basket~Catalog~Checkout~Home~News~PublicLayout.js": "/vendors~AllNews~Article~Basket~Catalog~Checkout~Home~News~PublicLayout.js",
     "/vendors~Article~Basket~Catalog~Checkout~Home~PublicLayout.js": "/vendors~Article~Basket~Catalog~Checkout~Home~PublicLayout.js",
-    "/vendors~Checkout.js": "/vendors~Checkout.js"
+    "/vendors~Checkout.js": "/vendors~Checkout.js",
+    "/AllNews~Article~Basket~Catalog~Home~News~PublicLayout.js": "/AllNews~Article~Basket~Catalog~Home~News~PublicLayout.js",
+    "/Article~Basket~Catalog~Home~PublicLayout.js": "/Article~Basket~Catalog~Home~PublicLayout.js",
+    "/vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout.js": "/vendors~AllNews~Article~Basket~Catalog~Home~News~PublicLayout.js",
+    "/vendors~Article~Basket~Catalog~Home~PublicLayout.js": "/vendors~Article~Basket~Catalog~Home~PublicLayout.js",
+    "/vendors~Home.js": "/vendors~Home.js",
+    "/Confirm.js": "/Confirm.js",
+    "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Home~News~PublicLayout.js": "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Home~News~PublicLayout.js",
+    "/Article~Basket~Catalog~Checkout~Confirm~Home~PublicLayout.js": "/Article~Basket~Catalog~Checkout~Confirm~Home~PublicLayout.js",
+    "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Home~News~PublicLayout.js": "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Home~News~PublicLayout.js",
+    "/vendors~Article~Basket~Catalog~Checkout~Confirm~Home~PublicLayout.js": "/vendors~Article~Basket~Catalog~Checkout~Confirm~Home~PublicLayout.js",
+    "/Contact.js": "/Contact.js",
+    "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js": "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js",
+    "/Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js": "/Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js",
+    "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js": "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js",
+    "/vendors~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js": "/vendors~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js",
+    "/vendors~Checkout~Contact.js": "/vendors~Checkout~Contact.js"
 }

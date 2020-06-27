@@ -79,7 +79,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "#newsGrid[data-v-7ddbe950] {\n  width: 60vw;\n  grid-gap: 15px;\n}", ""]);
+exports.push([module.i, "#newsGrid[data-v-7ddbe950] {\n  width: 60vw;\n  grid-gap: 15px;\n}\n@media screen and (max-width: 600px) {\n#newsGrid[data-v-7ddbe950] {\n    width: 100%;\n    padding: 0;\n}\n}", ""]);
 
 // exports
 

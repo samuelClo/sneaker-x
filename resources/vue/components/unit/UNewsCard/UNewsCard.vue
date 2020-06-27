@@ -3,7 +3,7 @@
         <div id="card">
             <img v-if="image" :src="image" :alt="title">
             <span id="title">{{ title }}</span>
-            <span v-if="date" id="date"> {{ date }}€</span>
+            <span v-if="date" id="date"> {{ date }}</span>
             <span id="summary"> {{ summary }}</span>
             <span id="link">lire la suite</span>
         </div>

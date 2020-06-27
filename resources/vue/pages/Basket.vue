@@ -20,7 +20,7 @@
             </div>
 
         </div>
-        <div id="recapBasket">
+        <div id="recapBasket" v-if="">
             <h1>
                 Récapitulatif
             </h1>
