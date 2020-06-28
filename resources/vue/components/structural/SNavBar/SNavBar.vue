@@ -27,13 +27,24 @@
                     Contact
                 </ULink>
             </li>
+            <li class="link">
+                <ULink href="admin">
+                    Admin
+                </ULink>
+            </li>
         </ul>
         <div id="useful_links">
 <!--            <div class="usefil_links_wrapper">-->
 <!--                <UBurgerMenu />-->
 <!--            </div>-->
+
             <div class="usefil_links_wrapper">
-                <USearch />
+                <img
+                    class="useful_links_logos"
+                    src="@/assets/pictures/logos/logo-search-bar.svg"
+                    alt="Open search bar"
+                    @click="handleSearchClick"
+                />
             </div>
             <div class="usefil_links_wrapper">
                 <UBasketIcon :articleNumber="basket.length ? basket.length : 0"/>
@@ -43,21 +54,43 @@
 </template>
 
 <script>
-import { ULink, UBurgerMenu, USearch, UBasketIcon } from "@/components/unit";
+import { ULink, UBurgerMenu, UBasketIcon } from "@/components/unit";
+import SSearch from '../../structural/SSearch/SSearch'
+
 import {mapGetters} from "vuex";
+
 
 export default {
     name: "SNavbar",
     components: {
         ULink,
         UBurgerMenu,
-        USearch,
+        SSearch,
         UBasketIcon
+    },
+    methods: {
+        handleSearchClick() {
+            this.$store.dispatch('search/setIsSearching', {
+                value: !this.isSearching,
+            })
+        }
     },
     computed: {
         ...mapGetters({
             basket: 'baskets/basket',
+            isSearching: 'search/isSearching'
         }),
+    },
+    watch: {
+        isSearching() {
+            if (this.isSearching) {
+                document.documentElement.style.overflow = 'hidden'
+                return
+            }
+
+            document.documentElement.style.overflow = 'auto'
+
+        }
     }
 };
 </script>

@@ -8,13 +8,14 @@
     outline: unset;
 }
 
-.is-small {
+.is_small {
+    width: fit-content;
     padding: 10px 20px;
 }
 
 .is_large {
     @include font_BTN;
-    
+
     padding: 12px 0;
     width: 100%;
 }

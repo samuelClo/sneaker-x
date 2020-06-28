@@ -9,6 +9,7 @@ const Basket = () => import(/* webpackChunkName: "Basket" */ "@/pages/Basket");
 const Checkout = () => import(/* webpackChunkName: "Checkout" */ "@/pages/Checkout");
 const Confirm = () => import(/* webpackChunkName: "Confirm" */ "@/pages/Confirm");
 const Contact = () => import(/* webpackChunkName: "Contact" */ "@/pages/Contact");
+const Admin = () => import(/* webpackChunkName: "Admin" */ "@/pages/Admin");
 
 
 export default [
@@ -61,6 +62,11 @@ export default [
         path: "/contact",
         name: "contact",
         component: Contact,
+    },
+    {
+        path: "/admin",
+        name: "admin",
+        component: Admin,
     },
     {
         path: "*",

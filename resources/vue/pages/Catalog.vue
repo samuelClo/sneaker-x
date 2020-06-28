@@ -2,23 +2,23 @@
     <main>
         <h1>TOUS LES PRODUITS</h1>
         <SFilterProduct :brands="brands" @onBrandClick="handleBrandClick" @onAllProductClick="handleAllProductClick"/>
-        <div class="grid" id="productGrid">
-            <UProductCard
-                v-for="product in data"
-                :key="product.id"
-                :name="product.name"
-                :picture="product.image"
-                :price="product.price"
-                :id="product.id"
-            />
-        </div>
+<!--        <div class="grid" id="productGrid">-->
+<!--            <UProductCard-->
+<!--                v-for="product in data"-->
+<!--                :key="product.id"-->
+<!--                :name="product.name"-->
+<!--                :picture="product.image"-->
+<!--                :price="product.price"-->
+<!--                :id="product.id"-->
+<!--            />-->
+<!--        </div>-->
+        <SCardList :withPaginate="false" :products="data"/>
     </main>
 
 </template>
 
 <script>
-    import {UProductCard} from '@/components/unit'
-    import {SFilterProduct} from '@/components/structural'
+    import {SFilterProduct, SCardList} from '@/components/structural'
     import {mapGetters} from 'vuex'
 
     export default {
@@ -39,8 +39,8 @@
             }
         },
         components: {
-            UProductCard,
-            SFilterProduct
+            SFilterProduct,
+            SCardList
         },
         mounted() {
             this.$store.dispatch('products/getProducts')

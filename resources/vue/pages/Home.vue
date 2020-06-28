@@ -1,16 +1,7 @@
 <template>
     <main id="wrapperHome">
 <!--        <SCarouselProduct :productsPicture="arrivagePicture" :products-text="arrivageText" id="carousel-test"/>-->
-        <div id="productGrid" class="grid">
-            <UProductCard
-                v-for="product in randomProducts"
-                :key="product.id"
-                :name="product.name"
-                :picture="product.image"
-                :price="product.price"
-                :id="product.id"
-            />
-        </div>
+        <SCardList :products="randomProducts"/>
         <h1>Actualité</h1>
         <div id="newsGrid" class="grid">
             <UNewsCard
@@ -26,16 +17,11 @@
 </template>
 
 <script>
-    import {SCarouselProduct} from "@/components/structural";
+    import {SCarouselProduct, SCardList} from "@/components/structural";
     import {UProductCard, UNewsCard} from "@/components/unit";
 
     import moment  from 'moment'
     import {mapGetters} from 'vuex'
-
-    const truc = '2020-06-23T08:50:21.000000Z€'
-
-
-    console.log(moment())
 
 
     export default {
@@ -62,7 +48,8 @@
         components: {
             SCarouselProduct,
             UProductCard,
-            UNewsCard
+            UNewsCard,
+            SCardList
         }
     };
 </script>

@@ -1,0 +1,36 @@
+#wrapperList {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    border: 1px solid $color_light_grey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#title_model_wrapper {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color_light_grey;
+}
+
+#wrapper_label_model {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label_model {
+    font-weight: bold;
+}
+
+.row_data_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.row_data {
+    max-width: 240px;
+}
+.row_data_item {
+    height: 120px;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}

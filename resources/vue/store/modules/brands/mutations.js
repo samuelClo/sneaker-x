@@ -1,4 +1,5 @@
 const getBrands = (state, brands) => {
+    console.log(brands)
     state.brands = brands
 }
 

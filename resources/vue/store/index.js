@@ -10,6 +10,7 @@ import news from './modules/news'
 import brands from './modules/brands'
 import baskets from './modules/baskets'
 import users from './modules/users'
+import search from './modules/search'
 
 Vue.use(Vuex)
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
         news,
         brands,
         baskets,
-        users
+        users,
+        search
     }
 })

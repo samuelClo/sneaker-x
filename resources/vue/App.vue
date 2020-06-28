@@ -1,9 +1,14 @@
 <template>
-    <router-view />
+    <div>
+        <SSearch v-if="isSearching"/>
+        <div v-if="isSearching" id="overlay" @click="handleOverlayClick" />
+        <router-view />
+    </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex"
+import SSearch from './components/structural/SSearch/SSearch'
 
 export default {
     name: "App",
@@ -18,7 +23,7 @@ export default {
             ) {
                 const dataBasket = [...state.baskets.basket]
 
-                if (!(dataBasket.length > 0 || this.products.length > 0))
+                if (!(dataBasket.length > 0 || this.products.data.length > 0))
                     return 0
 
                 const total = dataBasket.reduce((acc, order) => {
@@ -38,11 +43,22 @@ export default {
             }
         })
     },
+    methods: {
+        handleOverlayClick() {
+            this.$store.dispatch('search/setIsSearching', {
+                value: false,
+            })
+        }
+    },
+    components: {
+        SSearch
+    },
     computed: {
         ...mapGetters({
             basket: 'baskets/basket',
             products: 'products/products',
             basketTotalPrice: 'baskets/basketTotalPrice',
+            isSearching: 'search/isSearching',
         }),
     }
 }

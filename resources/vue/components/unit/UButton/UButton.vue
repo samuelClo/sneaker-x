@@ -15,7 +15,7 @@ export default {
         };
     },
     methods: {
-        handleClick() {
+        handleClick: function() {
             this.$emit("onClick");
         }
     },

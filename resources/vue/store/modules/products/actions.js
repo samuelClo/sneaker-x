@@ -53,10 +53,27 @@ const getProductsByIds = async ({commit}, {productsIds}) => {
     }
 }
 
+const getProductSearch = async ({commit}, {text, page = 1}) => {
+    console.log(page, text)
+    if (!text) {
+        commit('trashFilteredProducts')
+        return
+    }
+    try {
+        const res = await axios.get(`/api/products?page=${page}&search=${text}`)
+
+        commit('getFilteredProducts', res.data.payload)
+
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     getProducts,
     getProduct,
     getRandomProducts,
     getRelatedBrandProduct,
-    getProductsByIds
+    getProductsByIds,
+    getProductSearch
 }

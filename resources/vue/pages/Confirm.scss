@@ -9,7 +9,6 @@
 //   basket review
 .basket_review {
     margin-top: 30px;
-    width: 100%;
     height: fit-content;
     border: 1px solid $color_light_grey;
     padding: 10px;
@@ -58,4 +57,10 @@
     padding: 10px 0;
     border-top: 1px solid $color_light_grey;
     text-align: center;
+}
+
+@media all and (max-width: 500px) {
+    #wrapper_confirm {
+        width: 100%;
+    }
 }

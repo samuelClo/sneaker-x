@@ -59,6 +59,7 @@ button {
     transition: margin-top 0.2s;
     position: relative;
     z-index: 1;
+    grid-gap: 30px;
 }
 
 .invalid-feedback {
@@ -66,3 +67,26 @@ button {
     @include font_error;
 }
 
+#overlay {
+    z-index: 10;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+@media screen and (max-width: 1024px) {
+    .grid {
+        width: 90vw;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .grid {
+        //width: 100%;
+        grid-gap: 10px;
+    }
+}

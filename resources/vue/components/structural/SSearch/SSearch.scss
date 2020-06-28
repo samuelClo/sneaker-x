@@ -1,0 +1,46 @@
+#wrapperSearch {
+    z-index: 11;
+    padding: 10px;
+    border: 1px solid $color_light_grey;
+    background-color: #ffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 95vw;
+    max-width: 900px;
+    max-height: 90vh;
+}
+
+#searchText {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 3px;
+    border: 1px solid $color_light_grey;
+    @include font_ARTICLE_SMALL;
+    margin-bottom: 10px;
+}
+
+#labelSearch {
+    @include font_ARTICLE_SMALL;
+}
+
+#containProduct {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#close {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+

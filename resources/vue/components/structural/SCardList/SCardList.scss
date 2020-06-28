@@ -1,0 +1,16 @@
+.disabled {
+    opacity: 0;
+}
+
+.active {
+    color: $color_primary_default;
+}
+
+#navPaginate {
+    display: flex;
+}
+
+.toPageItem {
+    cursor: pointer;
+    margin-right: 20px;
+}

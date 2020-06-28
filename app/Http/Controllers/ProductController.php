@@ -42,7 +42,12 @@ class ProductController extends Controller
         $productsId = $request->input('productsIds');
 
         try {
-            $all = Product::whereIn('id', $productsId)
+//            $all = Product::whereIn([
+//                ['is_published', 1],
+//                ['id', $productsId]
+//            ])
+            $all = Product::where('is_published', 1)
+                ->whereIn('id', $productsId)
                 ->orderBy(DB::raw('FIELD(`id`, ' . implode(',', $productsId) . ')'))
                 ->get();
         } catch (Exception $err) {
@@ -67,18 +72,36 @@ class ProductController extends Controller
         $all = null;
 
         try {
-            $all = Product::where('is_published', 1)
-                ->when(request('sort') == "random", function ($query) {
-                    $query->inRandomOrder();
-                })
-                ->when(request('max'), function ($query) {
-                    $query->take(request('max'));
-                })
-                ->when(request('search'), function ($query) {
-                    $search = request('search');
-                    $query->where('products.name', 'LIKE', '%' . $search . '%');
-                })
-                ->get();
+            $all = null;
+            if ($request->page)
+            {
+                $all = Product::where('is_published', 1)
+                    ->when(request('sort') == "random", function ($query) {
+                        $query->inRandomOrder();
+                    })
+                    ->when(request('max'), function ($query) {
+                        $query->take(request('max'));
+                    })
+                    ->when(request('search'), function ($query) {
+                        $search = request('search');
+                        $query->where('products.name', 'LIKE', '%' . $search . '%');
+                    })
+                    ->paginate($request->max ? $request->max : 10);
+            } else {
+                $all = Product::where('is_published', 1)
+                    ->when(request('sort') == "random", function ($query) {
+                        $query->inRandomOrder();
+                    })
+                    ->when(request('max'), function ($query) {
+                        $query->take(request('max'));
+                    })
+                    ->when(request('search'), function ($query) {
+                        $search = request('search');
+                        $query->where('products.name', 'LIKE', '%' . $search . '%');
+                    })
+                    ->get();
+            }
+
         } catch (Exception $err) {
             return $this->handleError($err);
         }

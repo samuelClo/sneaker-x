@@ -1,6 +1,7 @@
 #wrapper {
     padding-top: 123%;
     position: relative;
+    cursor: pointer;
 }
 
 #card_shadow {
@@ -36,7 +37,7 @@
 
 #textWrapper {
     padding: 10px;
-    position: relative; 
+    position: relative;
     display: flex;
     justify-content: space-between;
     @include font_RE;

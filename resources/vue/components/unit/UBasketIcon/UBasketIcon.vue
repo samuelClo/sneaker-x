@@ -7,7 +7,7 @@
             alt="Access to the basket page"
             class="useful_links_logos"
         />
-        <span id="articleNumber">{{articleNumber }}</span>
+        <span v-if="articleNumber" id="articleNumber">{{articleNumber }}</span>
     </ULink>
 </template>
 

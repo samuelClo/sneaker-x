@@ -1,10 +1,5 @@
 <template>
-<!-- global style class -->
-    <img
-        class="useful_links_logos"
-        src="@/assets/pictures/logos/logo-search-bar.svg"
-        alt="Open search bar"
-    />
+
 </template>
 
 <script>

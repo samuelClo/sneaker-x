@@ -1,5 +1,10 @@
 <template>
-    <ULink href="article" :params="{ articleId: id }" id="wrapper">
+    <div
+        :params="{ articleId: id }"
+        id="wrapper"
+        class="productCard"
+        @click="handleClick"
+    >
         <div id="card_shadow">
             <div id="card">
                 <div id="picture" v-bind:style="stylePicture"></div>
@@ -10,7 +15,7 @@
                 </div>
             </div>
         </div>
-    </ULink>
+    </div>
 </template>
 
 <script>
@@ -24,7 +29,14 @@ export default {
             }
         };
     },
-    methods: {},
+    methods: {
+        handleClick() {
+            this.$store.dispatch('search/setIsSearching', {
+                value: false,
+            })
+            this.$router.push({ name: 'article', params: { articleId: this.id } })
+        }
+    },
     props: {
         name: {
             required: true,

@@ -38,21 +38,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 
-var truc = '2020-06-23T08:50:21.000000Z€';
-console.log(moment__WEBPACK_IMPORTED_MODULE_2___default()());
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -74,7 +63,8 @@ console.log(moment__WEBPACK_IMPORTED_MODULE_2___default()());
   components: {
     SCarouselProduct: _components_structural__WEBPACK_IMPORTED_MODULE_0__["SCarouselProduct"],
     UProductCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UProductCard"],
-    UNewsCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UNewsCard"]
+    UNewsCard: _components_unit__WEBPACK_IMPORTED_MODULE_1__["UNewsCard"],
+    SCardList: _components_structural__WEBPACK_IMPORTED_MODULE_0__["SCardList"]
   }
 });
 
@@ -491,43 +481,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { attrs: { id: "wrapperHome" } }, [
-    _c(
-      "div",
-      { staticClass: "grid", attrs: { id: "productGrid" } },
-      _vm._l(_vm.randomProducts, function(product) {
-        return _c("UProductCard", {
-          key: product.id,
-          attrs: {
-            name: product.name,
-            picture: product.image,
-            price: product.price,
-            id: product.id
-          }
-        })
-      }),
-      1
-    ),
-    _vm._v(" "),
-    _c("h1", [_vm._v("Actualité")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "grid", attrs: { id: "newsGrid" } },
-      _vm._l(_vm.lastNews, function(news) {
-        return _c("UNewsCard", {
-          key: news.id,
-          attrs: {
-            title: news.title,
-            date: _vm.moment(news.published_at).format("YYYY-MM-DD"),
-            summary: news.summary,
-            id: news.id
-          }
-        })
-      }),
-      1
-    )
-  ])
+  return _c(
+    "main",
+    { attrs: { id: "wrapperHome" } },
+    [
+      _c("SCardList", { attrs: { products: _vm.randomProducts } }),
+      _vm._v(" "),
+      _c("h1", [_vm._v("Actualité")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "grid", attrs: { id: "newsGrid" } },
+        _vm._l(_vm.lastNews, function(news) {
+          return _c("UNewsCard", {
+            key: news.id,
+            attrs: {
+              title: news.title,
+              date: _vm.moment(news.published_at).format("YYYY-MM-DD"),
+              summary: news.summary,
+              id: news.id
+            }
+          })
+        }),
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

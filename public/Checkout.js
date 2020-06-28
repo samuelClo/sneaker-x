@@ -248,6 +248,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.dispatch('users/setUser', {
           user: this.user
         });
+        this.$router.push('confirm');
       } else {
         alert('Erreur dans la saisie des informations bancaire');
       }
@@ -789,17 +790,10 @@ var render = function() {
               "div",
               { staticClass: "btn_wrapper" },
               [
-                _c(
-                  "ULink",
-                  { attrs: { href: "confirm" } },
-                  [
-                    _c("UButton", {
-                      attrs: { size: "large", content: "Commander" },
-                      on: { onClick: _vm.handleFinish }
-                    })
-                  ],
-                  1
-                )
+                _c("UButton", {
+                  attrs: { size: "large", content: "Commander" },
+                  on: { onClick: _vm.handleFinish }
+                })
               ],
               1
             )

@@ -104,9 +104,9 @@
         <div id="credit_card_wrapper" v-if="isValid">
             <VCreditCard @change="creditInfoChanged" />
             <div class="btn_wrapper">
-                <ULink href="confirm">
+
                     <UButton size="large" content="Commander" @onClick="handleFinish"/>
-                </ULink>
+
             </div>
         </div>
     </main>
@@ -213,7 +213,9 @@
                     this.$store.dispatch('users/setUser', {
                         user: this.user,
                     })
+                    this.$router.push('confirm')
                 } else {
+
                     alert('Erreur dans la saisie des informations bancaire')
                 }
             }
