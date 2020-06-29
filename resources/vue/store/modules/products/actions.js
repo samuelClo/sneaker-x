@@ -69,11 +69,22 @@ const getProductSearch = async ({commit}, {text, page = 1}) => {
     }
 }
 
+const deleteProduct = async ({commit}, {id}) => {
+    try {
+        await axios.delete(`/api/products/${id}`)
+
+        commit('deleteProduct', id)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     getProducts,
     getProduct,
     getRandomProducts,
     getRelatedBrandProduct,
     getProductsByIds,
-    getProductSearch
+    getProductSearch,
+    deleteProduct
 }

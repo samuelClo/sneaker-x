@@ -1,0 +1,3 @@
+url  site : http://http://sneaker-xxx.herokuapp.com/
+url github : https://github.com/samuelClo/sneaker-x.git
+

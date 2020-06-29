@@ -45,6 +45,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -202,82 +205,86 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "article",
-    { attrs: { id: "product_page" } },
-    [
-      _vm.product.image
-        ? _c("SCarouselProduct", {
-            attrs: {
-              id: "test",
-              "products-picture": _vm.product.images,
-              navigationEnabled: false
-            }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "aside",
-        { attrs: { id: "assets_wrapper" } },
+  return Object.keys(_vm.product).length > 0
+    ? _c(
+        "article",
+        { attrs: { id: "product_page" } },
         [
-          _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "price" } }, [
-            _vm._v(_vm._s(_vm.product.price) + " €")
-          ]),
-          _vm._v(" "),
-          _c("span", [_vm._v("Size : ")]),
-          _vm._v(" "),
-          _c("SSizeSelect", {
-            attrs: { default: 40 },
-            on: { onClick: _vm.handleSelect }
-          }),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "select_wrapper" } }, [
-            _c("span", [_vm._v("Quantity : ")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model.number",
-                  value: _vm.selectedProduct.quantity,
-                  expression: "selectedProduct.quantity",
-                  modifiers: { number: true }
+          _vm.product.image
+            ? _c("SCarouselProduct", {
+                attrs: {
+                  id: "test",
+                  "products-picture": _vm.product.images,
+                  navigationEnabled: false
                 }
-              ],
-              attrs: { type: "number", value: "1" },
-              domProps: { value: _vm.selectedProduct.quantity },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "aside",
+            { attrs: { id: "assets_wrapper" } },
+            [
+              _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "price" } }, [
+                _vm._v(_vm._s(_vm.product.price) + " €")
+              ]),
+              _vm._v(" "),
+              _c("span", [_vm._v("Size : ")]),
+              _vm._v(" "),
+              _c("SSizeSelect", {
+                attrs: { default: 40 },
+                on: { onClick: _vm.handleSelect }
+              }),
+              _vm._v(" "),
+              _c("div", { attrs: { id: "select_wrapper" } }, [
+                _c("span", [_vm._v("Quantity : ")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.selectedProduct.quantity,
+                      expression: "selectedProduct.quantity",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "number", value: "1" },
+                  domProps: { value: _vm.selectedProduct.quantity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.selectedProduct,
+                        "quantity",
+                        _vm._n($event.target.value)
+                      )
+                    },
+                    blur: function($event) {
+                      return _vm.$forceUpdate()
+                    }
                   }
-                  _vm.$set(
-                    _vm.selectedProduct,
-                    "quantity",
-                    _vm._n($event.target.value)
-                  )
-                },
-                blur: function($event) {
-                  return _vm.$forceUpdate()
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("UColorPicker", { on: { onColorChange: _vm.changeColor } }),
-          _vm._v(" "),
-          _c("UButton", {
-            attrs: { size: "large", content: "ADD" },
-            on: { onClick: _vm.addToBasket }
-          })
+                })
+              ]),
+              _vm._v(" "),
+              _c("UColorPicker", { on: { onColorChange: _vm.changeColor } }),
+              _vm._v(" "),
+              _c("UButton", {
+                attrs: { size: "large", content: "ADD" },
+                on: { onClick: _vm.addToBasket }
+              })
+            ],
+            1
+          )
         ],
         1
       )
-    ],
-    1
-  )
+    : _c("div", { attrs: { id: "notFound" } }, [
+        _vm._v("\n    Page not found\n")
+      ])
 }
 var staticRenderFns = []
 render._withStripped = true

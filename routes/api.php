@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('baskets', 'BasketController');
-Route::apiResource('brands', 'BrandController');
-Route::apiResource('images', 'ImageController');
-Route::apiResource('news', 'NewsController');
-Route::apiResource('orders', 'OrderController');
 
 //
 Route::prefix('products')->group(function () {
@@ -29,6 +24,8 @@ Route::prefix('basket')->group(function () {
     Route::put('/', 'BasketController@store');
 });
 
+Route::get('/brands/{id}/products', 'BrandController@showProducts');
+
 //Route::get('products/getTenRandom', 'ProductController@getTenRandomProducts');
 //Route::get('products/getTenRandom', function ()
 //{
@@ -36,5 +33,10 @@ Route::prefix('basket')->group(function () {
 //});
 
 Route::apiResource('products', 'ProductController');
+Route::apiResource('baskets', 'BasketController');
+Route::apiResource('brands', 'BrandController');
+Route::apiResource('images', 'ImageController');
+Route::apiResource('news', 'NewsController');
+Route::apiResource('orders', 'OrderController');
 
 

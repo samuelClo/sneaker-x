@@ -1,9 +1,12 @@
 <template>
-    <main id="wrapperNews">
+    <main v-if="Object.keys(news).length > 0" id="wrapperNews">
         <h1>{{news.title}}</h1>
         <p id="summary">{{news.summary}}</p>
         <p id="content">{{news.content}}</p>
     </main>
+    <div id="notFound" v-else>
+        Page not found
+    </div>
 </template>
 
 <script>

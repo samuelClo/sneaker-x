@@ -2,9 +2,9 @@
     "/404.js": "/404.js",
     "/js/app.js": "/js/app.js",
     "/About.js": "/About.js",
+    "/Admin.js": "/Admin.js",
     "/AllNews.js": "/AllNews.js",
     "/Article.js": "/Article.js",
-    "/Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js": "/Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js",
     "/Basket.js": "/Basket.js",
     "/Catalog.js": "/Catalog.js",
     "/Checkout.js": "/Checkout.js",
@@ -13,11 +13,7 @@
     "/Home.js": "/Home.js",
     "/News.js": "/News.js",
     "/PublicLayout.js": "/PublicLayout.js",
-    "/vendors~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js": "/vendors~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~PublicLayout.js",
     "/vendors~Checkout.js": "/vendors~Checkout.js",
     "/vendors~Checkout~Contact.js": "/vendors~Checkout~Contact.js",
-    "/vendors~Home.js": "/vendors~Home.js",
-    "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js": "/AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js",
-    "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js": "/vendors~AllNews~Article~Basket~Catalog~Checkout~Confirm~Contact~Home~News~PublicLayout.js",
-    "/Admin.js": "/Admin.js"
+    "/vendors~Home.js": "/vendors~Home.js"
 }

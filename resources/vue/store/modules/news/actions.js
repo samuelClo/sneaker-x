@@ -33,8 +33,19 @@ const getQuantityNews = async ({commit}, {quantity}) => {
     }
 }
 
+const deleteNews = async ({commit}, {id}) => {
+    try {
+        await axios.delete(`/api/news/${id}`)
+
+        commit('deleteNews', id)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
     getNews,
     getAllNews,
     getQuantityNews,
+    deleteNews
 }

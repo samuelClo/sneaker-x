@@ -22,10 +22,17 @@ const trashFilteredProducts = (state) => {
     state.filteredProducts = []
 }
 
+const deleteProduct = (state, id) => {
+    const index = state.products.findIndex(product => product.id === id)
+
+    state.products.splice(index, 1);
+}
+
 export {
     getProducts,
     getProduct,
     getRelatedBrandProduct,
     getFilteredProducts,
-    trashFilteredProducts
+    trashFilteredProducts,
+    deleteProduct
 }

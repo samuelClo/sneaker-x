@@ -10,6 +10,17 @@ const getBrands = async ({commit}) => {
     }
 }
 
+const deleteBrand = async ({commit}, {id}) => {
+    try {
+        await axios.delete(`/api/brands/${id}`)
+
+        commit('deleteBrand', id)
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 export {
-    getBrands
+    getBrands,
+    deleteBrand
 }

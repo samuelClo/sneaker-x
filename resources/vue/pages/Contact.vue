@@ -32,13 +32,12 @@
                 </div>
                 <div class="form-group">
                     <label for="object">Objet</label>
-                    <input type="text" placeholder="Votre objet" v-model="user.object" id="object" name="object" class="form-control"
-                           :class="{ 'is-invalid': submitted && $v.user.object.$error }"/>
+                    <input type="text" placeholder="Votre objet" v-model="user.object" id="object" name="object" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
                     <textarea name="message" id="message" placeholder="Text..." v-model="user.message"  class="form-control"
-                              :class="{ 'is-invalid': submitted && $v.user.message.$error }"></textarea>
+                              ></textarea>
                 </div>
                 <div class="btn_wrapper">
                     <UButton size="large" content="Envoyer"/>

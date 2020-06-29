@@ -95,6 +95,32 @@ class BrandController extends Controller
     }
 
     /**
+     * Display the specified resource with products
+     *
+     * @param $id
+     * @return JsonResponse
+     */
+
+    public function showProducts($id)
+    {
+        $error = null;
+        $el = null;
+
+        try {
+            $el = Brand::findOrFail($id)->load('products');
+        } catch (Exception $err) {
+            $error = 'Unknown id';
+
+            return $this->handleError($error, 404);
+        }
+
+        return response()->json([
+            'error' => $error,
+            'brandData' => $el,
+        ]);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param Request $request

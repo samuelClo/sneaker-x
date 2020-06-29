@@ -1,5 +1,5 @@
 <template>
-    <article id="product_page">
+    <article id="product_page" v-if="Object.keys(product).length > 0">
         <SCarouselProduct
             id="test"
             v-if="product.image"
@@ -23,6 +23,9 @@
             <UButton size="large" content="ADD" @onClick="addToBasket" />
         </aside>
     </article>
+    <div id="notFound" v-else>
+        Page not found
+    </div>
 </template>
 
 <script>

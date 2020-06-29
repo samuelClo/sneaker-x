@@ -25,6 +25,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -156,13 +159,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { attrs: { id: "wrapperNews" } }, [
-    _c("h1", [_vm._v(_vm._s(_vm.news.title))]),
-    _vm._v(" "),
-    _c("p", { attrs: { id: "summary" } }, [_vm._v(_vm._s(_vm.news.summary))]),
-    _vm._v(" "),
-    _c("p", { attrs: { id: "content" } }, [_vm._v(_vm._s(_vm.news.content))])
-  ])
+  return Object.keys(_vm.news).length > 0
+    ? _c("main", { attrs: { id: "wrapperNews" } }, [
+        _c("h1", [_vm._v(_vm._s(_vm.news.title))]),
+        _vm._v(" "),
+        _c("p", { attrs: { id: "summary" } }, [
+          _vm._v(_vm._s(_vm.news.summary))
+        ]),
+        _vm._v(" "),
+        _c("p", { attrs: { id: "content" } }, [
+          _vm._v(_vm._s(_vm.news.content))
+        ])
+      ])
+    : _c("div", { attrs: { id: "notFound" } }, [
+        _vm._v("\n    Page not found\n")
+      ])
 }
 var staticRenderFns = []
 render._withStripped = true

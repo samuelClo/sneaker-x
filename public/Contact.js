@@ -73,7 +73,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -430,9 +429,6 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: {
-                "is-invalid": _vm.submitted && _vm.$v.user.object.$error
-              },
               attrs: {
                 type: "text",
                 placeholder: "Votre objet",
@@ -464,9 +460,6 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              class: {
-                "is-invalid": _vm.submitted && _vm.$v.user.message.$error
-              },
               attrs: { name: "message", id: "message", placeholder: "Text..." },
               domProps: { value: _vm.user.message },
               on: {

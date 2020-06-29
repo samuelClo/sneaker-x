@@ -106,6 +106,10 @@ class ProductController extends Controller
             return $this->handleError($err);
         }
 
+        if (request('search') && sizeof($all) == 0) {
+            return response()->json([], 204);
+        }
+
         return response()->json([
             'error' => $error,
             'payload' => $all,
